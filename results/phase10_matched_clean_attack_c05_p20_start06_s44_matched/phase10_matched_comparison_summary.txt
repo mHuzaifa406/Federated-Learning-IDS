@@ -1,0 +1,18 @@
+PHASE 10 — MATCHED CLEAN CONTROL VS DELAYED-ONSET ATTACK
+========================================================
+Probe/malicious client: 5
+Attack starts: Round 6
+Pre-attack client-round pairs compared: 50
+Pre-attack max absolute difference: 0
+Pre-attack trajectories matched within 1e-07: True
+
+Probe clean-control CUSUM top-3: 6/7 monitored rounds
+Probe clean-control deviation top-3: 6/7 monitored rounds
+Probe attacked-run CUSUM top-3 before onset: 1/2 rounds
+Probe attacked-run CUSUM top-3 after onset: 5/5 rounds
+Probe attacked-run deviation top-3 after onset: 5/5 rounds
+Mean target CUSUM change (attack minus clean) after onset: -1.569250
+Mean target deviation change (attack minus clean) after onset: -0.488431
+
+Top-3 is a cohort-relative rank, not a calibrated alarm threshold.
+No screening; no aggregation change; independent test set not used.

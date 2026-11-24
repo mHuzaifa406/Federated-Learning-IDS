@@ -1,0 +1,148 @@
+Model,Actual_Class_ID,Actual_Class,Predicted_Class_ID,Predicted_Class,Count
+Trained_Global_Scenario_H_Round10,0,Benign,0,Benign,89173
+Trained_Global_Scenario_H_Round10,0,Benign,1,Bot,0
+Trained_Global_Scenario_H_Round10,0,Benign,2,DoS,89
+Trained_Global_Scenario_H_Round10,0,Benign,3,Infiltration,0
+Trained_Global_Scenario_H_Round10,0,Benign,4,PortScan,1592
+Trained_Global_Scenario_H_Round10,0,Benign,5,Web Attack,0
+Trained_Global_Scenario_H_Round10,0,Benign,6,Brute Force,0
+Trained_Global_Scenario_H_Round10,1,Bot,0,Benign,64
+Trained_Global_Scenario_H_Round10,1,Bot,1,Bot,0
+Trained_Global_Scenario_H_Round10,1,Bot,2,DoS,0
+Trained_Global_Scenario_H_Round10,1,Bot,3,Infiltration,0
+Trained_Global_Scenario_H_Round10,1,Bot,4,PortScan,14
+Trained_Global_Scenario_H_Round10,1,Bot,5,Web Attack,0
+Trained_Global_Scenario_H_Round10,1,Bot,6,Brute Force,0
+Trained_Global_Scenario_H_Round10,2,DoS,0,Benign,3270
+Trained_Global_Scenario_H_Round10,2,DoS,1,Bot,0
+Trained_Global_Scenario_H_Round10,2,DoS,2,DoS,11920
+Trained_Global_Scenario_H_Round10,2,DoS,3,Infiltration,0
+Trained_Global_Scenario_H_Round10,2,DoS,4,PortScan,0
+Trained_Global_Scenario_H_Round10,2,DoS,5,Web Attack,0
+Trained_Global_Scenario_H_Round10,2,DoS,6,Brute Force,0
+Trained_Global_Scenario_H_Round10,3,Infiltration,0,Benign,2
+Trained_Global_Scenario_H_Round10,3,Infiltration,1,Bot,0
+Trained_Global_Scenario_H_Round10,3,Infiltration,2,DoS,0
+Trained_Global_Scenario_H_Round10,3,Infiltration,3,Infiltration,0
+Trained_Global_Scenario_H_Round10,3,Infiltration,4,PortScan,0
+Trained_Global_Scenario_H_Round10,3,Infiltration,5,Web Attack,0
+Trained_Global_Scenario_H_Round10,3,Infiltration,6,Brute Force,0
+Trained_Global_Scenario_H_Round10,4,PortScan,0,Benign,258
+Trained_Global_Scenario_H_Round10,4,PortScan,1,Bot,0
+Trained_Global_Scenario_H_Round10,4,PortScan,2,DoS,3
+Trained_Global_Scenario_H_Round10,4,PortScan,3,Infiltration,0
+Trained_Global_Scenario_H_Round10,4,PortScan,4,PortScan,6091
+Trained_Global_Scenario_H_Round10,4,PortScan,5,Web Attack,0
+Trained_Global_Scenario_H_Round10,4,PortScan,6,Brute Force,0
+Trained_Global_Scenario_H_Round10,5,Web Attack,0,Benign,87
+Trained_Global_Scenario_H_Round10,5,Web Attack,1,Bot,0
+Trained_Global_Scenario_H_Round10,5,Web Attack,2,DoS,0
+Trained_Global_Scenario_H_Round10,5,Web Attack,3,Infiltration,0
+Trained_Global_Scenario_H_Round10,5,Web Attack,4,PortScan,0
+Trained_Global_Scenario_H_Round10,5,Web Attack,5,Web Attack,0
+Trained_Global_Scenario_H_Round10,5,Web Attack,6,Brute Force,0
+Trained_Global_Scenario_H_Round10,6,Brute Force,0,Benign,386
+Trained_Global_Scenario_H_Round10,6,Brute Force,1,Bot,0
+Trained_Global_Scenario_H_Round10,6,Brute Force,2,DoS,0
+Trained_Global_Scenario_H_Round10,6,Brute Force,3,Infiltration,0
+Trained_Global_Scenario_H_Round10,6,Brute Force,4,PortScan,167
+Trained_Global_Scenario_H_Round10,6,Brute Force,5,Web Attack,0
+Trained_Global_Scenario_H_Round10,6,Brute Force,6,Brute Force,0
+Clean_Client07_Model,0,Benign,0,Benign,80789
+Clean_Client07_Model,0,Benign,1,Bot,0
+Clean_Client07_Model,0,Benign,2,DoS,8295
+Clean_Client07_Model,0,Benign,3,Infiltration,0
+Clean_Client07_Model,0,Benign,4,PortScan,1770
+Clean_Client07_Model,0,Benign,5,Web Attack,0
+Clean_Client07_Model,0,Benign,6,Brute Force,0
+Clean_Client07_Model,1,Bot,0,Benign,61
+Clean_Client07_Model,1,Bot,1,Bot,0
+Clean_Client07_Model,1,Bot,2,DoS,3
+Clean_Client07_Model,1,Bot,3,Infiltration,0
+Clean_Client07_Model,1,Bot,4,PortScan,14
+Clean_Client07_Model,1,Bot,5,Web Attack,0
+Clean_Client07_Model,1,Bot,6,Brute Force,0
+Clean_Client07_Model,2,DoS,0,Benign,151
+Clean_Client07_Model,2,DoS,1,Bot,0
+Clean_Client07_Model,2,DoS,2,DoS,15039
+Clean_Client07_Model,2,DoS,3,Infiltration,0
+Clean_Client07_Model,2,DoS,4,PortScan,0
+Clean_Client07_Model,2,DoS,5,Web Attack,0
+Clean_Client07_Model,2,DoS,6,Brute Force,0
+Clean_Client07_Model,3,Infiltration,0,Benign,1
+Clean_Client07_Model,3,Infiltration,1,Bot,0
+Clean_Client07_Model,3,Infiltration,2,DoS,1
+Clean_Client07_Model,3,Infiltration,3,Infiltration,0
+Clean_Client07_Model,3,Infiltration,4,PortScan,0
+Clean_Client07_Model,3,Infiltration,5,Web Attack,0
+Clean_Client07_Model,3,Infiltration,6,Brute Force,0
+Clean_Client07_Model,4,PortScan,0,Benign,54
+Clean_Client07_Model,4,PortScan,1,Bot,0
+Clean_Client07_Model,4,PortScan,2,DoS,7
+Clean_Client07_Model,4,PortScan,3,Infiltration,0
+Clean_Client07_Model,4,PortScan,4,PortScan,6291
+Clean_Client07_Model,4,PortScan,5,Web Attack,0
+Clean_Client07_Model,4,PortScan,6,Brute Force,0
+Clean_Client07_Model,5,Web Attack,0,Benign,85
+Clean_Client07_Model,5,Web Attack,1,Bot,0
+Clean_Client07_Model,5,Web Attack,2,DoS,2
+Clean_Client07_Model,5,Web Attack,3,Infiltration,0
+Clean_Client07_Model,5,Web Attack,4,PortScan,0
+Clean_Client07_Model,5,Web Attack,5,Web Attack,0
+Clean_Client07_Model,5,Web Attack,6,Brute Force,0
+Clean_Client07_Model,6,Brute Force,0,Benign,233
+Clean_Client07_Model,6,Brute Force,1,Bot,0
+Clean_Client07_Model,6,Brute Force,2,DoS,153
+Clean_Client07_Model,6,Brute Force,3,Infiltration,0
+Clean_Client07_Model,6,Brute Force,4,PortScan,167
+Clean_Client07_Model,6,Brute Force,5,Web Attack,0
+Clean_Client07_Model,6,Brute Force,6,Brute Force,0
+Poisoned_Client07_Model,0,Benign,0,Benign,82543
+Poisoned_Client07_Model,0,Benign,1,Bot,0
+Poisoned_Client07_Model,0,Benign,2,DoS,6546
+Poisoned_Client07_Model,0,Benign,3,Infiltration,0
+Poisoned_Client07_Model,0,Benign,4,PortScan,1765
+Poisoned_Client07_Model,0,Benign,5,Web Attack,0
+Poisoned_Client07_Model,0,Benign,6,Brute Force,0
+Poisoned_Client07_Model,1,Bot,0,Benign,64
+Poisoned_Client07_Model,1,Bot,1,Bot,0
+Poisoned_Client07_Model,1,Bot,2,DoS,0
+Poisoned_Client07_Model,1,Bot,3,Infiltration,0
+Poisoned_Client07_Model,1,Bot,4,PortScan,14
+Poisoned_Client07_Model,1,Bot,5,Web Attack,0
+Poisoned_Client07_Model,1,Bot,6,Brute Force,0
+Poisoned_Client07_Model,2,DoS,0,Benign,246
+Poisoned_Client07_Model,2,DoS,1,Bot,0
+Poisoned_Client07_Model,2,DoS,2,DoS,14944
+Poisoned_Client07_Model,2,DoS,3,Infiltration,0
+Poisoned_Client07_Model,2,DoS,4,PortScan,0
+Poisoned_Client07_Model,2,DoS,5,Web Attack,0
+Poisoned_Client07_Model,2,DoS,6,Brute Force,0
+Poisoned_Client07_Model,3,Infiltration,0,Benign,2
+Poisoned_Client07_Model,3,Infiltration,1,Bot,0
+Poisoned_Client07_Model,3,Infiltration,2,DoS,0
+Poisoned_Client07_Model,3,Infiltration,3,Infiltration,0
+Poisoned_Client07_Model,3,Infiltration,4,PortScan,0
+Poisoned_Client07_Model,3,Infiltration,5,Web Attack,0
+Poisoned_Client07_Model,3,Infiltration,6,Brute Force,0
+Poisoned_Client07_Model,4,PortScan,0,Benign,55
+Poisoned_Client07_Model,4,PortScan,1,Bot,0
+Poisoned_Client07_Model,4,PortScan,2,DoS,6
+Poisoned_Client07_Model,4,PortScan,3,Infiltration,0
+Poisoned_Client07_Model,4,PortScan,4,PortScan,6291
+Poisoned_Client07_Model,4,PortScan,5,Web Attack,0
+Poisoned_Client07_Model,4,PortScan,6,Brute Force,0
+Poisoned_Client07_Model,5,Web Attack,0,Benign,85
+Poisoned_Client07_Model,5,Web Attack,1,Bot,0
+Poisoned_Client07_Model,5,Web Attack,2,DoS,2
+Poisoned_Client07_Model,5,Web Attack,3,Infiltration,0
+Poisoned_Client07_Model,5,Web Attack,4,PortScan,0
+Poisoned_Client07_Model,5,Web Attack,5,Web Attack,0
+Poisoned_Client07_Model,5,Web Attack,6,Brute Force,0
+Poisoned_Client07_Model,6,Brute Force,0,Benign,336
+Poisoned_Client07_Model,6,Brute Force,1,Bot,0
+Poisoned_Client07_Model,6,Brute Force,2,DoS,50
+Poisoned_Client07_Model,6,Brute Force,3,Infiltration,0
+Poisoned_Client07_Model,6,Brute Force,4,PortScan,167
+Poisoned_Client07_Model,6,Brute Force,5,Web Attack,0
+Poisoned_Client07_Model,6,Brute Force,6,Brute Force,0

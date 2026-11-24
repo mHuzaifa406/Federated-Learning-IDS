@@ -1,0 +1,2 @@
+Scenarios,Scenario_Round_Observations,Mean_ROC_AUC_120_Scenario_Rounds,Std_ROC_AUC_120_Scenario_Rounds,Top3_Scenario_Rounds,Top3_Scenario_Round_Rate,Independent_Test_Used,Screening_Enabled
+12,120,0.7555555555555556,0.2051570821686109,80,0.6666666666666666,False,False

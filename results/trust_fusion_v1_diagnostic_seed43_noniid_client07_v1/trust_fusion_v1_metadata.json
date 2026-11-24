@@ -1,0 +1,32 @@
+{
+  "phase": "Trust Fusion V1",
+  "purpose": "offline exploratory diagnostic only",
+  "conditions": [
+    "clean",
+    "poison-client07"
+  ],
+  "clients": 10,
+  "rounds_averaged_for_historical_and_similarity": 10,
+  "cavc_min_class_support": 100,
+  "malicious_client_id": 7,
+  "default_weights": {
+    "similarity": 0.3333333333333333,
+    "historical": 0.3333333333333333,
+    "cavc": 0.3333333333333333
+  },
+  "weight_sweep_step": 0.1,
+  "input_files": {
+    "cavc_v2_client_summary_min_support_100": "E:\\IoMT_FL_IDS_TRFA\\results\\scenario_cavc_v2_paired_client07_seed43\\cavc_v2_client_summary_min_support_100.csv",
+    "historical_clean": "E:\\IoMT_FL_IDS_TRFA\\results\\historical_trust_v2_clean_noniid_seed43_matched_clean_control_01\\historical_v2_client_round_trust.csv",
+    "historical_poisoned": "E:\\IoMT_FL_IDS_TRFA\\results\\historical_trust_v2_poison_client07_noniid_seed43\\historical_v2_client_round_trust.csv",
+    "similarity_clean": "E:\\IoMT_FL_IDS_TRFA\\results\\similarity_v2_clean_noniid_seed43\\similarity_v2_client_round_scores.csv",
+    "similarity_poisoned": "E:\\IoMT_FL_IDS_TRFA\\results\\similarity_v2_poison_client07_noniid_seed43\\similarity_v2_client_round_scores.csv"
+  },
+  "limitations": [
+    "CAVC frozen-checkpoint candidate diagnostics are not round-matched with the two 10-round federated diagnostics.",
+    "One attacker, one attack configuration and one seed; no generalization claim.",
+    "Percentile features are cohort-relative, not calibrated probabilities.",
+    "Weight sweep is exploratory and reuses this same scenario; weights are not selected for deployment.",
+    "No screening, aggregation change, model training or independent-test evaluation."
+  ]
+}

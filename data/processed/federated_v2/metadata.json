@@ -1,0 +1,32 @@
+{
+    "source": "E:\\IoMT_FL_IDS\\data\\processed\\federated_v1",
+    "output": "E:\\IoMT_FL_IDS\\data\\processed\\federated_v2",
+    "number_of_clients": 10,
+    "validation_fraction": 0.05,
+    "random_seed": 42,
+    "original_total_records": 2262303,
+    "remaining_training_records": 2149187,
+    "validation_records": 113116,
+    "original_client_records": {
+        "1": 226233,
+        "2": 226233,
+        "3": 226233,
+        "4": 226233,
+        "5": 226231,
+        "6": 226230,
+        "7": 226228,
+        "8": 226228,
+        "9": 226228,
+        "10": 226226
+    },
+    "validation_class_distribution": {
+        "0": 90854,
+        "1": 78,
+        "2": 15190,
+        "3": 2,
+        "4": 6352,
+        "5": 87,
+        "6": 553
+    },
+    "test_data_modified": false
+}

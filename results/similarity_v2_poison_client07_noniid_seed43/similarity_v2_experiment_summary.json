@@ -1,0 +1,18 @@
+{
+  "experiment": "update_similarity_v2_noniid_diagnostic",
+  "condition": "poison-client07",
+  "dataset": "CIC-IDS-2017",
+  "partition_method": "class-wise Dirichlet",
+  "dirichlet_alpha": 0.5,
+  "partition_seed": 43,
+  "training_seed": 43,
+  "clients": 10,
+  "rounds": 10,
+  "malicious_client": 7,
+  "target_label": 0,
+  "poisoned_records_per_round": 1897,
+  "poison_fraction_of_client": 0.040556719545046395,
+  "screening_enabled": false,
+  "independent_test_used": false,
+  "interpretation": "Similarity diagnostics only; no detection or defense claim."
+}

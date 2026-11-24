@@ -1,0 +1,15 @@
+PHASE 10 — MATCHED ALL-HONEST BCTCD CONTROL
+=============================================
+Probe client (honest throughout): 5
+Input Phase 9 directory: E:\IoMT_FL_IDS_TRFA\results\phase9_clean_control_client05_p0.2000_s44_ps2028_c05_p20_clean_s44
+Baseline warm-up rounds: 1-3
+Monitored rounds: [4, 5, 6, 7, 8, 9, 10]
+Attack active: NEVER
+Probe deviation top-3: 6/7
+Probe CUSUM top-3: 6/7
+Probe mean deviation: 1.767846
+Probe mean CUSUM: 2.236430
+
+All clients remained honest and were aggregated.
+Top-3 rates are cohort-relative ranking indicators, not calibrated false-positive rates.
+Screening disabled; aggregation unchanged; independent test not used.

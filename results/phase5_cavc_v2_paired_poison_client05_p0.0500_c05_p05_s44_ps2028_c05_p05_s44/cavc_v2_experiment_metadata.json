@@ -1,0 +1,48 @@
+{
+  "experiment": "Paired CAVC V2 frozen-checkpoint local-candidate diagnostic",
+  "cavc_version": "2.0",
+  "dataset": "CIC-IDS-2017",
+  "partition": "E:\\IoMT_FL_IDS_TRFA\\data\\processed\\federated_noniid_alpha05_seed43",
+  "dirichlet_alpha": 0.5,
+  "partition_seed": 43,
+  "global_checkpoint": "E:\\IoMT_FL_IDS_TRFA\\results\\phase5_historical_v2_clean_s44_control44\\historical_v2_round_10.pt",
+  "global_checkpoint_round": 10,
+  "training_seed": 44,
+  "poison_seed": 2028,
+  "clients": 10,
+  "malicious_client_id": 5,
+  "target_label": 0,
+  "configured_fraction_of_eligible_nonbenign": 0.05,
+  "eligible_nonbenign_records": 17032,
+  "poisoned_records": 851,
+  "malicious_client_records": 34741,
+  "actual_fraction_of_eligible": 0.04996477219351808,
+  "actual_fraction_of_client": 0.024495552805043033,
+  "target_client_prediction_changes_vs_clean_candidate": 355,
+  "validation_records": 113116,
+  "validation_class_support": {
+    "0": 90854,
+    "1": 78,
+    "2": 15190,
+    "3": 2,
+    "4": 6352,
+    "5": 87,
+    "6": 553
+  },
+  "minimum_support_thresholds": [
+    50,
+    100,
+    200
+  ],
+  "screening_enabled": false,
+  "aggregation_performed": false,
+  "independent_test_set_used": false,
+  "pairing": "Same frozen global checkpoint; same Client 05 features; same local training seed; same poison-selected records across this paired candidate; same validation records/order. Only the selected client labels differ between its clean and poisoned candidates.",
+  "limitations": [
+    "This is a local candidate-model diagnostic, not a complete federated defense evaluation.",
+    "CAVC V2 components are separate diagnostics and are not fused into a client-honesty score.",
+    "The server-validation set is used only for development diagnostics; the independent test set is not used.",
+    "Classes below minimum support are reported but excluded from the aggregated attack metrics.",
+    "Repeated class metrics from one validation set do not establish generalization across datasets or seeds."
+  ]
+}

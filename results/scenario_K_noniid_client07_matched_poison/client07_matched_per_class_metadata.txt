@@ -1,0 +1,8 @@
+Client 07 matched poisoning per-class diagnostic
+Original records: 46774
+Poisoned records: 1897
+Overall-client poisoning fraction: 4.05567195%
+Clean training loss: 0.86742384
+Poisoned training loss: 0.98222592
+Clean candidate validation loss: 2.09547594
+Poisoned candidate validation loss: 1.94767396

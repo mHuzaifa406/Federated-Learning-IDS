@@ -1,0 +1,31 @@
+{
+    "experiment": "One-round non-IID poisoning diagnostic",
+    "training_seed": 43,
+    "poison_seed": 2027,
+    "malicious_client": 10,
+    "target_label": 0,
+    "poison_ratio": 0.2,
+    "poisoning_statistics": {
+        "malicious_client": 10,
+        "eligible_non_benign_records": 43381,
+        "poisoned_records": 8676,
+        "poison_ratio": 0.2,
+        "overall_client_poison_fraction": 0.0405689756754482,
+        "original_selected_label_counts": {
+            "1": 18,
+            "2": 4350,
+            "4": 4082,
+            "5": 83,
+            "6": 143
+        }
+    },
+    "candidate_threshold": 0.7422773619,
+    "minimum_validation_support": 500,
+    "consistency_scaling": {
+        "Global_Consistency": 1.3911849626844277,
+        "Supported_Class_Consistency": 0.35354822931872243,
+        "True_Distribution_Consistency": 1.6136608989731633,
+        "Observed_Distribution_Consistency": 1.62706983323665
+    },
+    "scoring_note": "Historical trust is neutral at 0.5. Scores are exploratory one-round diagnostics. They do not represent full multi-round defense performance."
+}

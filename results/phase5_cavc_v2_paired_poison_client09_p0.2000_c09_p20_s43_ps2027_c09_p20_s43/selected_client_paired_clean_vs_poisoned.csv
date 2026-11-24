@@ -1,0 +1,4 @@
+min_class_support,target_clean_attack_detection_score,target_poisoned_attack_detection_score,target_attack_detection_score_change,target_clean_targeted_damage_penalty,target_poisoned_targeted_damage_penalty,target_targeted_damage_penalty_change,target_clean_benign_fpr_damage_penalty,target_poisoned_benign_fpr_damage_penalty,target_benign_fpr_damage_penalty_change
+50,0.522913046830823,0.5190131694588943,-0.0038998773719286506,0.0,0.0,0.0,0.0457877473749092,0.02199132674400687,-0.02379642063090233
+100,0.5381884113847051,0.5316886157648238,-0.006499795619881232,0.0,0.0,0.0,0.0457877473749092,0.02199132674400687,-0.02379642063090233
+200,0.5381884113847051,0.5316886157648238,-0.006499795619881232,0.0,0.0,0.0,0.0457877473749092,0.02199132674400687,-0.02379642063090233

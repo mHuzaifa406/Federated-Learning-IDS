@@ -1,0 +1,14 @@
+{
+  "phase": "8",
+  "method": "CCTRT V1 causal round-by-round replay",
+  "input_zip": "E:\\IoMT_FL_IDS_TRFA\\phase7_raw_round_inputs.zip",
+  "scenario_count": 12,
+  "rounds": 10,
+  "clients": 10,
+  "causal_rule": "For round r, use current-round directional features and cumulative absolute steps through round r only.",
+  "round1_temporal_initialization": 0.5,
+  "screening_enabled": false,
+  "aggregation_modified": false,
+  "independent_test_used": false,
+  "delayed_attack_onset_tested": false
+}

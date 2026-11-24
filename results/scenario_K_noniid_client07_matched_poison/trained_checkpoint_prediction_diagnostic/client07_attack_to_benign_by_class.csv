@@ -1,0 +1,19 @@
+Model,Attack_Class,Original_Records,Predicted_As_Benign,Attack_To_Benign_Rate
+Trained_Global_Scenario_H_Round10,Bot,78,64,0.8205128205128205
+Trained_Global_Scenario_H_Round10,DoS,15190,3270,0.2152732060566162
+Trained_Global_Scenario_H_Round10,Infiltration,2,2,1.0
+Trained_Global_Scenario_H_Round10,PortScan,6352,258,0.04061712846347607
+Trained_Global_Scenario_H_Round10,Web Attack,87,87,1.0
+Trained_Global_Scenario_H_Round10,Brute Force,553,386,0.6980108499095841
+Clean_Client07_Model,Bot,78,61,0.782051282051282
+Clean_Client07_Model,DoS,15190,151,0.009940750493745886
+Clean_Client07_Model,Infiltration,2,1,0.5
+Clean_Client07_Model,PortScan,6352,54,0.00850125944584383
+Clean_Client07_Model,Web Attack,87,85,0.9770114942528736
+Clean_Client07_Model,Brute Force,553,233,0.4213381555153707
+Poisoned_Client07_Model,Bot,78,64,0.8205128205128205
+Poisoned_Client07_Model,DoS,15190,246,0.01619486504279131
+Poisoned_Client07_Model,Infiltration,2,2,1.0
+Poisoned_Client07_Model,PortScan,6352,55,0.008658690176322419
+Poisoned_Client07_Model,Web Attack,87,85,0.9770114942528736
+Poisoned_Client07_Model,Brute Force,553,336,0.6075949367088608

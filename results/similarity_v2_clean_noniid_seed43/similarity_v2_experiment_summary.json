@@ -1,0 +1,18 @@
+{
+  "experiment": "update_similarity_v2_noniid_diagnostic",
+  "condition": "clean",
+  "dataset": "CIC-IDS-2017",
+  "partition_method": "class-wise Dirichlet",
+  "dirichlet_alpha": 0.5,
+  "partition_seed": 43,
+  "training_seed": 43,
+  "clients": 10,
+  "rounds": 10,
+  "malicious_client": null,
+  "target_label": null,
+  "poisoned_records_per_round": 0,
+  "poison_fraction_of_client": 0.0,
+  "screening_enabled": false,
+  "independent_test_used": false,
+  "interpretation": "Similarity diagnostics only; no detection or defense claim."
+}

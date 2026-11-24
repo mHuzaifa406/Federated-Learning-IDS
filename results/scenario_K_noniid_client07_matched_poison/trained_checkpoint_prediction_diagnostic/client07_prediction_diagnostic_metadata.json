@@ -1,0 +1,16 @@
+{
+  "scenario":"K - Client 07 matched poisoning prediction diagnostic",
+  "data_root":"E:\\IoMT_FL_IDS_TRFA\\data\\processed\\federated_noniid_alpha05_seed43",
+  "global_checkpoint":"E:\\IoMT_FL_IDS_TRFA\\results\\scenario_H_noniid_trust_calibration\\clean_noniid_round_10.pt",
+  "checkpoint_round":10,
+  "client_id":7,
+  "target_label":0,
+  "target_class":"Benign",
+  "poison_seed":2027,
+  "training_seed":43,
+  "poisoned_records":1897,
+  "client_records":46774,
+  "client_poisoning_fraction":0.0405567195,
+  "validation_records":113116,
+  "evaluation_data":"server validation; not independent test data"
+}

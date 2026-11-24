@@ -1,0 +1,55 @@
+
+{
+    "method": "Trust-Based Robust Federated Aggregation",
+    "abbreviation": "TRFA",
+
+    "status": "initial_prototype_parameters_not_final",
+
+    "trust_signals": {
+        "update_similarity": {
+            "enabled": true,
+            "reference": "coordinate_wise_median",
+            "cosine_mapping": "(1 + cosine_similarity) / 2",
+            "zero_vector_score": 0.5
+        },
+
+        "training_consistency": {
+            "enabled": true,
+            "evaluation": "clean_server_validation",
+            "metric": "cross_entropy_loss",
+            "scale": "median_absolute_loss_change",
+            "neutral_score": 0.5
+        },
+
+        "historical_trust": {
+            "enabled": true,
+            "initial_trust": 0.5,
+            "retention": 0.90,
+            "update_rule": "EMA"
+        }
+    },
+
+    "trust_weights": {
+        "alpha": 0.3333333333333333,
+        "beta": 0.3333333333333333,
+        "gamma": 0.3333333333333333
+    },
+
+    "screening": {
+        "initial_threshold": 0.50,
+        "comparison": "greater_than_or_equal",
+        "minimum_accepted_clients": 2
+    },
+
+    "aggregation": {
+        "method": "sample_size_weighted_fedavg",
+        "trust_used_as_second_aggregation_weight": false
+    },
+
+    "parameter_selection": {
+        "threshold_tuning_dataset": "server_validation",
+        "weight_tuning_dataset": "server_validation",
+        "independent_test_used_for_tuning": false
+    }
+}
+

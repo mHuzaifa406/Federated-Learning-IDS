@@ -1,0 +1,25 @@
+{
+  "phase": "5",
+  "malicious_client": 5,
+  "poison_fraction_of_eligible_nonbenign": 0.05,
+  "training_seed": 43,
+  "poison_seed": 2027,
+  "inputs": {
+    "cavc": "E:\\IoMT_FL_IDS_TRFA\\results\\phase5_cavc_v2_paired_poison_client05_p0.0500_c05_p05_s43_ps2027_c05_p05_s43\\cavc_v2_client_summary_min_support_100.csv",
+    "hist_clean": "E:\\IoMT_FL_IDS_TRFA\\results\\historical_trust_v2_clean_noniid_seed43_matched_clean_control_01\\historical_v2_client_round_trust.csv",
+    "hist_poison": "E:\\IoMT_FL_IDS_TRFA\\results\\phase5_historical_v2_poison-client05_p0.0500_s43_ps2027_c05_p05_s43\\historical_v2_client_round_trust.csv",
+    "sim_clean": "E:\\IoMT_FL_IDS_TRFA\\results\\similarity_v2_clean_noniid_seed43\\similarity_v2_client_round_scores.csv",
+    "sim_poison": "E:\\IoMT_FL_IDS_TRFA\\results\\phase5_similarity_poison-client05_p0.0500_s43_ps2027_c05_p05_s43\\similarity_v2_client_round_scores.csv"
+  },
+  "clients": 10,
+  "rounds_averaged": 10,
+  "cavc_min_class_support": 100,
+  "screening_enabled": false,
+  "independent_test_used": false,
+  "limitations": [
+    "CAVC and full-FL diagnostics are not the same experimental unit.",
+    "Cohort percentiles are not calibrated probabilities.",
+    "Single scenario, one attacker, one seed; descriptive metrics only.",
+    "Weight sweep is exploratory and in-sample."
+  ]
+}

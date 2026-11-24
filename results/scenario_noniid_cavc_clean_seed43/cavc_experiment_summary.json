@@ -1,0 +1,50 @@
+{
+  "experiment": "CAVC non-IID signal calibration",
+  "cavc_version": "1.0-prototype",
+  "condition": "clean",
+  "dataset": "CIC-IDS-2017",
+  "partition_method": "class-wise Dirichlet",
+  "dirichlet_alpha": 0.5,
+  "partition_seed": 43,
+  "training_seed": 43,
+  "clients": 10,
+  "rounds": 10,
+  "screening_enabled": false,
+  "aggregation": "sample-size-weighted FedAvg over all 10 clients",
+  "minimum_class_support_thresholds": [
+    50,
+    100,
+    200
+  ],
+  "validation_class_support": {
+    "0": 90854,
+    "1": 78,
+    "2": 15190,
+    "3": 2,
+    "4": 6352,
+    "5": 87,
+    "6": 553
+  },
+  "default_minimum_class_support": 100,
+  "target_label": 0,
+  "poisoning": null,
+  "final_post_aggregation_validation_metrics": {
+    "Condition": "clean",
+    "Round": 10,
+    "Pre_Aggregation_Validation_Accuracy": 0.9464797199335195,
+    "Post_Aggregation_Validation_Accuracy": 0.9473018847908342,
+    "Post_Aggregation_Macro_F1_All_Present_Labels": 0.3856848832151332,
+    "Post_Aggregation_Weighted_F1": 0.9436615387763636,
+    "Post_Aggregation_Balanced_Accuracy_All_Present_Labels": 0.38867382244116894,
+    "Accepted_Clients": 10,
+    "Screening_Enabled": false
+  },
+  "independent_test_set_used": false,
+  "interpretation_note": "CAVC is a server-validation contribution signal, not a calibrated probability of honesty. The run has screening disabled and therefore does not evaluate defense detection rates.",
+  "files": {
+    "client_round_scores": "cavc_client_round_scores.csv",
+    "per_class_diagnostics": "cavc_per_class_diagnostics.csv",
+    "round_model_metrics": "cavc_round_model_metrics.csv",
+    "client_summary_min_support_100": "cavc_client_summary_min_support_100.csv"
+  }
+}

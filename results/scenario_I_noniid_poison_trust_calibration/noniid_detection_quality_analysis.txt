@@ -1,0 +1,3 @@
+Overall ROC-AUC: 0.322222
+Average precision: 0.076510
+Note: Client-round observations are repeated measurements, not independent samples.

@@ -1,0 +1,19 @@
+Model,Attack_Class,Original_Records,Predicted_As_Benign,Attack_To_Benign_Rate
+Initial_Global_Model,Bot,78,0,0.0
+Initial_Global_Model,DoS,15190,1899,0.1250164581961817
+Initial_Global_Model,Infiltration,2,0,0.0
+Initial_Global_Model,PortScan,6352,0,0.0
+Initial_Global_Model,Web Attack,87,0,0.0
+Initial_Global_Model,Brute Force,553,0,0.0
+Clean_Client07_Model,Bot,78,0,0.0
+Clean_Client07_Model,DoS,15190,0,0.0
+Clean_Client07_Model,Infiltration,2,0,0.0
+Clean_Client07_Model,PortScan,6352,0,0.0
+Clean_Client07_Model,Web Attack,87,0,0.0
+Clean_Client07_Model,Brute Force,553,0,0.0
+Poisoned_Client07_Model,Bot,78,0,0.0
+Poisoned_Client07_Model,DoS,15190,0,0.0
+Poisoned_Client07_Model,Infiltration,2,0,0.0
+Poisoned_Client07_Model,PortScan,6352,0,0.0
+Poisoned_Client07_Model,Web Attack,87,0,0.0
+Poisoned_Client07_Model,Brute Force,553,0,0.0

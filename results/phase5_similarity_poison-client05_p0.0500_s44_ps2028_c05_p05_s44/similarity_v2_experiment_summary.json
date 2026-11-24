@@ -1,0 +1,23 @@
+{
+  "experiment": "phase5_update_similarity_v2_noniid_diagnostic",
+  "condition": "poison",
+  "dataset": "CIC-IDS-2017",
+  "partition_method": "class-wise Dirichlet",
+  "dirichlet_alpha": 0.5,
+  "partition_seed": 43,
+  "training_seed": 44,
+  "clients": 10,
+  "rounds": 10,
+  "malicious_client": 5,
+  "target_label": 0,
+  "poison_fraction_of_eligible_nonbenign": 0.05,
+  "eligible_nonbenign_records": 17032,
+  "client_records": 34741,
+  "poisoned_records_per_round": 851,
+  "actual_fraction_of_eligible": 0.04996477219351808,
+  "actual_fraction_of_client": 0.024495552805043033,
+  "poison_seed": 2028,
+  "screening_enabled": false,
+  "independent_test_used": false,
+  "interpretation": "Similarity diagnostics only; screening disabled; not a defense claim."
+}

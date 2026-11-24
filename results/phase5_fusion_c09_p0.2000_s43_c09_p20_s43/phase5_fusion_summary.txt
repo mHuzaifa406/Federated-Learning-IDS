@@ -1,0 +1,39 @@
+TRFA PHASE 5 — MULTI-SCENARIO FUSION DIAGNOSTIC
+================================================
+Malicious client: 9
+Poison fraction of eligible non-Benign records: 20.000000%
+Training seed: 43
+Poison selection seed: 2027
+No training, screening, aggregation change, or independent-test evaluation was performed by this fusion script.
+Higher scores mean greater cohort-relative diagnostic unusualness; they are not probabilities.
+
+Component comparison in poisoned condition:
+  Similarity_Group_Score: rank 8/10; ROC-AUC 0.222222; AP 0.125000
+  Historical_Group_Score: rank 5/10; ROC-AUC 0.555556; AP 0.200000
+  CAVC_Group_Score: rank 7/10; ROC-AUC 0.388889; AP 0.142857
+  Equal_Weight_Fusion_Score: rank 8/10; ROC-AUC 0.222222; AP 0.125000
+
+Equal-weight fusion in poisoned condition:
+  Target client rank (1 = most suspicious): 8/10
+  Target minus honest mean: -0.061728
+  Descriptive ROC-AUC (10 clients, one attacker): 0.222222
+  Descriptive average precision: 0.125000
+  Clean target score: 0.355556
+  Poisoned target score: 0.494444
+  Poisoned minus clean score: 0.138889
+
+Top exploratory weights on this same scenario (not a selected/validated setting):
+ similarity_weight  historical_weight  cavc_weight  malicious_client_rank_most_suspicious_first  malicious_minus_honest_mean_score  roc_auc_10_clients_one_attacker  average_precision_10_clients_one_attacker  malicious_score  target_paired_change  target_paired_change_rank
+               0.0                1.0          0.0                                            5                           0.055556                         0.555556                                        0.2         0.600000              0.300000                        4.5
+               0.0                0.9          0.1                                            5                           0.040741                         0.555556                                        0.2         0.586667              0.270000                        4.5
+               0.1                0.9          0.0                                            5                           0.035185                         0.555556                                        0.2         0.581667              0.281667                        7.0
+               0.0                0.8          0.2                                            5                           0.025926                         0.555556                                        0.2         0.573333              0.240000                        4.5
+               0.1                0.8          0.1                                            5                           0.020370                         0.555556                                        0.2         0.568333              0.251667                        7.0
+
+Interpretation limits:
+- CAVC is a frozen-checkpoint local-candidate diagnostic; the other two components are 10-round FL diagnostics.
+- Percentile normalization is relative to these 10 clients and each condition.
+- The 10-client ROC-AUC has one positive client and is descriptive only.
+- The weight sweep reuses this same scenario and must not be used to claim optimal weights.
+- This scenario alone cannot establish cross-client, cross-strength, or cross-seed generalization.
+- Screening remained disabled in the upstream component experiments; independent test data was not used.

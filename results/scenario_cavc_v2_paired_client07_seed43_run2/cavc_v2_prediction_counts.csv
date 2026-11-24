@@ -1,0 +1,141 @@
+condition,client_id,is_malicious,predicted_class_id,predicted_class_name,predicted_count,predicted_fraction
+clean,1,False,0,Benign,95910,0.8478906609144595
+clean,1,False,1,Bot,0,0.0
+clean,1,False,2,DoS,11876,0.10498956823084267
+clean,1,False,3,Infiltration,0,0.0
+clean,1,False,4,PortScan,5330,0.04711977085469783
+clean,1,False,5,Web Attack,0,0.0
+clean,1,False,6,Brute Force,0,0.0
+clean,2,False,0,Benign,95968,0.848403408889989
+clean,2,False,1,Bot,0,0.0
+clean,2,False,2,DoS,9086,0.08032462251140422
+clean,2,False,3,Infiltration,0,0.0
+clean,2,False,4,PortScan,8062,0.07127196859860674
+clean,2,False,5,Web Attack,0,0.0
+clean,2,False,6,Brute Force,0,0.0
+clean,3,False,0,Benign,92088,0.8141023374235298
+clean,3,False,1,Bot,0,0.0
+clean,3,False,2,DoS,12827,0.11339686693305986
+clean,3,False,3,Infiltration,0,0.0
+clean,3,False,4,PortScan,8201,0.0725007956434103
+clean,3,False,5,Web Attack,0,0.0
+clean,3,False,6,Brute Force,0,0.0
+clean,4,False,0,Benign,92330,0.8162417341490151
+clean,4,False,1,Bot,0,0.0
+clean,4,False,2,DoS,17217,0.15220658439124438
+clean,4,False,3,Infiltration,0,0.0
+clean,4,False,4,PortScan,3569,0.031551681459740445
+clean,4,False,5,Web Attack,0,0.0
+clean,4,False,6,Brute Force,0,0.0
+clean,5,False,0,Benign,90624,0.8011598712825772
+clean,5,False,1,Bot,0,0.0
+clean,5,False,2,DoS,13525,0.11956752360408784
+clean,5,False,3,Infiltration,0,0.0
+clean,5,False,4,PortScan,8967,0.07927260511333499
+clean,5,False,5,Web Attack,0,0.0
+clean,5,False,6,Brute Force,0,0.0
+clean,6,False,0,Benign,99587,0.8803971144665653
+clean,6,False,1,Bot,0,0.0
+clean,6,False,2,DoS,13220,0.11687117649138937
+clean,6,False,3,Infiltration,0,0.0
+clean,6,False,4,PortScan,309,0.002731709042045334
+clean,6,False,5,Web Attack,0,0.0
+clean,6,False,6,Brute Force,0,0.0
+clean,7,False,0,Benign,81400,0.7196152622087061
+clean,7,False,1,Bot,0,0.0
+clean,7,False,2,DoS,23474,0.2075214823720782
+clean,7,False,3,Infiltration,0,0.0
+clean,7,False,4,PortScan,8242,0.07286325541921568
+clean,7,False,5,Web Attack,0,0.0
+clean,7,False,6,Brute Force,0,0.0
+clean,8,False,0,Benign,93202,0.8239506347466318
+clean,8,False,1,Bot,0,0.0
+clean,8,False,2,DoS,11911,0.10529898511262774
+clean,8,False,3,Infiltration,0,0.0
+clean,8,False,4,PortScan,8003,0.07075038014074048
+clean,8,False,5,Web Attack,0,0.0
+clean,8,False,6,Brute Force,0,0.0
+clean,9,False,0,Benign,85860,0.7590438134304608
+clean,9,False,1,Bot,0,0.0
+clean,9,False,2,DoS,18989,0.16787191909190566
+clean,9,False,3,Infiltration,0,0.0
+clean,9,False,4,PortScan,8267,0.07308426747763358
+clean,9,False,5,Web Attack,0,0.0
+clean,9,False,6,Brute Force,0,0.0
+clean,10,False,0,Benign,91582,0.8096290533611514
+clean,10,False,1,Bot,0,0.0
+clean,10,False,2,DoS,13315,0.11771102231337742
+clean,10,False,3,Infiltration,0,0.0
+clean,10,False,4,PortScan,8219,0.07265992432547119
+clean,10,False,5,Web Attack,0,0.0
+clean,10,False,6,Brute Force,0,0.0
+poison_client07,1,False,0,Benign,95910,0.8478906609144595
+poison_client07,1,False,1,Bot,0,0.0
+poison_client07,1,False,2,DoS,11876,0.10498956823084267
+poison_client07,1,False,3,Infiltration,0,0.0
+poison_client07,1,False,4,PortScan,5330,0.04711977085469783
+poison_client07,1,False,5,Web Attack,0,0.0
+poison_client07,1,False,6,Brute Force,0,0.0
+poison_client07,2,False,0,Benign,95968,0.848403408889989
+poison_client07,2,False,1,Bot,0,0.0
+poison_client07,2,False,2,DoS,9086,0.08032462251140422
+poison_client07,2,False,3,Infiltration,0,0.0
+poison_client07,2,False,4,PortScan,8062,0.07127196859860674
+poison_client07,2,False,5,Web Attack,0,0.0
+poison_client07,2,False,6,Brute Force,0,0.0
+poison_client07,3,False,0,Benign,92088,0.8141023374235298
+poison_client07,3,False,1,Bot,0,0.0
+poison_client07,3,False,2,DoS,12827,0.11339686693305986
+poison_client07,3,False,3,Infiltration,0,0.0
+poison_client07,3,False,4,PortScan,8201,0.0725007956434103
+poison_client07,3,False,5,Web Attack,0,0.0
+poison_client07,3,False,6,Brute Force,0,0.0
+poison_client07,4,False,0,Benign,92330,0.8162417341490151
+poison_client07,4,False,1,Bot,0,0.0
+poison_client07,4,False,2,DoS,17217,0.15220658439124438
+poison_client07,4,False,3,Infiltration,0,0.0
+poison_client07,4,False,4,PortScan,3569,0.031551681459740445
+poison_client07,4,False,5,Web Attack,0,0.0
+poison_client07,4,False,6,Brute Force,0,0.0
+poison_client07,5,False,0,Benign,90624,0.8011598712825772
+poison_client07,5,False,1,Bot,0,0.0
+poison_client07,5,False,2,DoS,13525,0.11956752360408784
+poison_client07,5,False,3,Infiltration,0,0.0
+poison_client07,5,False,4,PortScan,8967,0.07927260511333499
+poison_client07,5,False,5,Web Attack,0,0.0
+poison_client07,5,False,6,Brute Force,0,0.0
+poison_client07,6,False,0,Benign,99587,0.8803971144665653
+poison_client07,6,False,1,Bot,0,0.0
+poison_client07,6,False,2,DoS,13220,0.11687117649138937
+poison_client07,6,False,3,Infiltration,0,0.0
+poison_client07,6,False,4,PortScan,309,0.002731709042045334
+poison_client07,6,False,5,Web Attack,0,0.0
+poison_client07,6,False,6,Brute Force,0,0.0
+poison_client07,7,True,0,Benign,83342,0.7367834789066091
+poison_client07,7,True,1,Bot,0,0.0
+poison_client07,7,True,2,DoS,21537,0.19039746808585875
+poison_client07,7,True,3,Infiltration,0,0.0
+poison_client07,7,True,4,PortScan,8237,0.0728190530075321
+poison_client07,7,True,5,Web Attack,0,0.0
+poison_client07,7,True,6,Brute Force,0,0.0
+poison_client07,8,False,0,Benign,93202,0.8239506347466318
+poison_client07,8,False,1,Bot,0,0.0
+poison_client07,8,False,2,DoS,11911,0.10529898511262774
+poison_client07,8,False,3,Infiltration,0,0.0
+poison_client07,8,False,4,PortScan,8003,0.07075038014074048
+poison_client07,8,False,5,Web Attack,0,0.0
+poison_client07,8,False,6,Brute Force,0,0.0
+poison_client07,9,False,0,Benign,85860,0.7590438134304608
+poison_client07,9,False,1,Bot,0,0.0
+poison_client07,9,False,2,DoS,18989,0.16787191909190566
+poison_client07,9,False,3,Infiltration,0,0.0
+poison_client07,9,False,4,PortScan,8267,0.07308426747763358
+poison_client07,9,False,5,Web Attack,0,0.0
+poison_client07,9,False,6,Brute Force,0,0.0
+poison_client07,10,False,0,Benign,91582,0.8096290533611514
+poison_client07,10,False,1,Bot,0,0.0
+poison_client07,10,False,2,DoS,13315,0.11771102231337742
+poison_client07,10,False,3,Infiltration,0,0.0
+poison_client07,10,False,4,PortScan,8219,0.07265992432547119
+poison_client07,10,False,5,Web Attack,0,0.0
+poison_client07,10,False,6,Brute Force,0,0.0

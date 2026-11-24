@@ -1,0 +1,56 @@
+{
+  "experiment": "historical_trust_v2_noniid_calibration",
+  "condition": "poison",
+  "dataset": "CIC-IDS-2017",
+  "partition_method": "class-wise Dirichlet",
+  "dirichlet_alpha": 0.5,
+  "partition_seed": 43,
+  "training_seed": 44,
+  "clients": 10,
+  "rounds": 10,
+  "poisoning_enabled": true,
+  "malicious_client": 7,
+  "target_label": 0,
+  "poisoned_records_per_round": 2338,
+  "poison_fraction_of_eligible_nonbenign": 0.04998503442083209,
+  "eligible_nonbenign_records": 46774,
+  "malicious_client_records": 46774,
+  "poison_fraction_of_client": 0.04998503442083209,
+  "poison_seed": 2028,
+  "screening_enabled": false,
+  "calibration_threshold": 0.0,
+  "aggregation": "sample-size-weighted FedAvg over all clients",
+  "consistency_signal": "temporal update consistency (provisional diagnostic)",
+  "historical_trust_version": "2.0",
+  "historical_retention": 0.9,
+  "initial_historical_trust": 0.5,
+  "trust_weights": {
+    "alpha": 0.3333333333333333,
+    "beta": 0.3333333333333333,
+    "gamma": 0.3333333333333333
+  },
+  "test_set_used": false,
+  "final_metrics": {
+    "Round": 10,
+    "Validation_Loss": 0.1546821242162187,
+    "Validation_accuracy": 0.9460465362990205,
+    "Validation_balanced_accuracy": 0.38618319801212725,
+    "Validation_macro_f1": 0.38467441353895404,
+    "Validation_weighted_f1": 0.9421650366550779,
+    "Accepted_Clients": 10,
+    "Excluded_Clients": 0,
+    "Poisoned_Records": 2338,
+    "Aggregation_Weight_Sum": 1.0
+  },
+  "files": {
+    "client_round_trust": "historical_v2_client_round_trust.csv",
+    "round_metrics": "historical_v2_round_metrics.csv",
+    "client_summary": "historical_v2_client_summary.csv"
+  },
+  "interpretation_limitations": [
+    "Screening was disabled; this experiment does not measure detection rate or false-exclusion rate.",
+    "Temporal consistency is provisional and can also be high for persistent malicious clients.",
+    "No independent test data was used.",
+    "This run integrates and tests the Historical Trust V2 update lifecycle, not the final TRFA methodology."
+  ]
+}

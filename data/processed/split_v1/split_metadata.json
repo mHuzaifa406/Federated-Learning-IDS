@@ -1,0 +1,36 @@
+{
+    "total_records": 2827876,
+    "training_records": 2262303,
+    "testing_records": 565573,
+    "test_fraction": 0.2,
+    "random_seed": 42,
+    "classes": [
+        "Benign",
+        "Bot",
+        "DoS",
+        "Infiltration",
+        "PortScan",
+        "Web Attack",
+        "Brute Force"
+    ],
+    "method": "Stratified split within each class",
+    "test_count_rule": "floor(class_count * 0.20)",
+    "class_training_counts": {
+        "DoS": 303799,
+        "Benign": 1817056,
+        "PortScan": 127044,
+        "Bot": 1565,
+        "Infiltration": 29,
+        "Web Attack": 1744,
+        "Brute Force": 11066
+    },
+    "class_testing_counts": {
+        "DoS": 75949,
+        "Benign": 454264,
+        "PortScan": 31760,
+        "Bot": 391,
+        "Infiltration": 7,
+        "Web Attack": 436,
+        "Brute Force": 2766
+    }
+}

@@ -1,0 +1,18 @@
+PHASE 10 — BASELINE-CALIBRATED TEMPORAL CHANGE DETECTION (BCTCD V1)
+===================================================================
+Input experiment: E:\IoMT_FL_IDS_TRFA\results\phase9_delayed_client05_p0.2000_start4_s44_ps2028_c05_p20_start04_s44
+Target client: 5
+Attack start round: 4
+Warm-up rounds: 3
+CUSUM slack: 1.0
+
+Mean active-round deviation ROC-AUC: 0.730159
+Mean active-round CUSUM ROC-AUC: 0.753968
+Deviation top-3 rate after onset: 0.857143
+CUSUM top-3 rate after onset: 0.714286
+Pre-attack monitored rounds: 0
+Pre-attack deviation top-3 rounds: 0
+Pre-attack CUSUM top-3 rounds: 0
+
+No training was performed. No client was excluded. Independent test was not used.
+This is a diagnostic replay, not validated live attack detection.

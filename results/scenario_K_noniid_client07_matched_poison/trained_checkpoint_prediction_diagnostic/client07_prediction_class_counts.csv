@@ -1,0 +1,22 @@
+Model,Class_ID,Class_Name,Predicted_Count,Predicted_Fraction
+Trained_Global_Scenario_H_Round10,0,Benign,93240,0.824286573075427
+Trained_Global_Scenario_H_Round10,1,Bot,0,0.0
+Trained_Global_Scenario_H_Round10,2,DoS,12012,0.1061918738286361
+Trained_Global_Scenario_H_Round10,3,Infiltration,0,0.0
+Trained_Global_Scenario_H_Round10,4,PortScan,7864,0.06952155309593691
+Trained_Global_Scenario_H_Round10,5,Web Attack,0,0.0
+Trained_Global_Scenario_H_Round10,6,Brute Force,0,0.0
+Clean_Client07_Model,0,Benign,81374,0.7193854096679515
+Clean_Client07_Model,1,Bot,0,0.0
+Clean_Client07_Model,2,DoS,23500,0.20775133491283285
+Clean_Client07_Model,3,Infiltration,0,0.0
+Clean_Client07_Model,4,PortScan,8242,0.07286325541921568
+Clean_Client07_Model,5,Web Attack,0,0.0
+Clean_Client07_Model,6,Brute Force,0,0.0
+Poisoned_Client07_Model,0,Benign,83331,0.7366862336009052
+Poisoned_Client07_Model,1,Bot,0,0.0
+Poisoned_Client07_Model,2,DoS,21548,0.19049471339156265
+Poisoned_Client07_Model,3,Infiltration,0,0.0
+Poisoned_Client07_Model,4,PortScan,8237,0.0728190530075321
+Poisoned_Client07_Model,5,Web Attack,0,0.0
+Poisoned_Client07_Model,6,Brute Force,0,0.0

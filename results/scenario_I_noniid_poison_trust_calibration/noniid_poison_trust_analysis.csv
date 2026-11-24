@@ -1,0 +1,9 @@
+Metric,Value
+Malicious client-rounds,10.0
+Honest client-rounds,90.0
+Malicious trust mean,0.6711696502513952
+Honest trust mean,0.5814705113513063
+Maximum malicious trust,0.7487172608480003
+Minimum honest trust,0.26944759919676753
+Malicious client-rounds below threshold,6.0
+Honest client-rounds below threshold,76.0

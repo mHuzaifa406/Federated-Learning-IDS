@@ -1,0 +1,29 @@
+{
+  "phase": "Phase 10 BCTCD V1",
+  "method": "Client-specific robust baseline + per-round deviation + one-sided CUSUM",
+  "input_experiment": "E:\\IoMT_FL_IDS_TRFA\\results\\phase9_delayed_client05_p0.2000_start4_s44_ps2028_c05_p20_start04_s44",
+  "warmup_rounds": 3,
+  "score_monitoring_starts_round": 4,
+  "cusum_slack": 1.0,
+  "z_cap": 6.0,
+  "target_client": 5,
+  "attack_start_round": 4,
+  "active_rounds": 7,
+  "mean_active_deviation_auc": 0.7301587301587301,
+  "mean_active_cusum_auc": 0.7539682539682541,
+  "active_deviation_top3_rate": 0.8571428571428571,
+  "active_cusum_top3_rate": 0.7142857142857143,
+  "pre_attack_monitor_rounds": 0,
+  "pre_attack_deviation_top3_rounds": 0,
+  "pre_attack_cusum_top3_rounds": 0,
+  "screening_enabled": false,
+  "aggregation_modified": false,
+  "independent_test_used": false,
+  "limitations": [
+    "Offline causal replay of an existing Phase 9 run; no new model training performed.",
+    "Baseline is estimated from the first warmup_rounds observations and frozen afterward.",
+    "Feature scales include predeclared floors because the warm-up has only a few rounds.",
+    "Scores are client-specific deviations and cohort rankings, not calibrated attack probabilities.",
+    "One delayed-onset scenario is not sufficient for generalization; matched clean runs are still required."
+  ]
+}

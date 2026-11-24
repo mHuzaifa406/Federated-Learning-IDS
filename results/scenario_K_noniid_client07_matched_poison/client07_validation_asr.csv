@@ -1,0 +1,4 @@
+Attack_Records,Attack_To_Benign,Validation_ASR,Model
+22262,1899,0.08530230886712784,Initial_Global_Model
+22262,0,0.0,Clean_Client07_Model
+22262,0,0.0,Poisoned_Client07_Model

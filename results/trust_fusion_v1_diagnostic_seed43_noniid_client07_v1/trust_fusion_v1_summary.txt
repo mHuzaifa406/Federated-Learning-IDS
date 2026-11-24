@@ -1,0 +1,32 @@
+TRFA TRUST FUSION V1 — OFFLINE DIAGNOSTIC
+===========================================
+
+Purpose: exploratory combination of existing CAVC V2, Historical Trust V2 and Similarity V2 diagnostics.
+No model training, aggregation, client screening or independent-test evaluation was performed.
+Higher values indicate greater diagnostic unusualness, not a calibrated attack probability.
+
+Equal-weight fusion (one-third per group):
+  Client 07 poisoned-condition score: 0.594444
+  Client 07 rank (1 = most suspicious): 5/10
+  Client 07 minus honest-client mean: 0.049383
+  ROC-AUC across 10 clients (one attacker): 0.611111
+  Average precision across 10 clients (one attacker): 0.200000
+
+Client 07 paired change in equal-weight suspicion score:
+  Clean: 0.622222
+  Poisoned: 0.594444
+  Poisoned minus clean: -0.027778
+
+Top-ranked weight combination in this same-scenario exploratory 0.1-step grid (not a selected setting):
+  Similarity=0.8; Historical=0.2; CAVC=0.0
+  Client 07 rank: 2/10; ROC-AUC=0.888889
+
+INTERPRETATION LIMITS
+- Only one malicious client, one poisoning configuration and one partition/training seed are represented.
+- Similarity and Historical Trust are averaged over 10 rounds; CAVC is a separate frozen-checkpoint candidate diagnostic.
+- Percentile scaling is relative to the 10 clients in each condition; scores are not probabilities and depend on this cohort.
+- The weight sweep is exploratory and evaluated on the same scenario used to inspect it; do not call its best weights optimal.
+- The 10-client ROC-AUC is descriptive and has only one positive client; it is not evidence of generalization.
+- Independent test data was not used. No screening or aggregation decision was made.
+
+Next validation required: repeat with additional malicious clients, attack strengths, independent seeds and a separately held-out development configuration before selecting weights or thresholds.

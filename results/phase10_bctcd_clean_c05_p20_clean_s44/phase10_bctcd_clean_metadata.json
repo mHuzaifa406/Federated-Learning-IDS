@@ -1,0 +1,33 @@
+{
+  "phase": "Phase 10 matched all-honest BCTCD control",
+  "input_phase9_directory": "E:\\IoMT_FL_IDS_TRFA\\results\\phase9_clean_control_client05_p0.2000_s44_ps2028_c05_p20_clean_s44",
+  "target_probe_client": 5,
+  "all_clients_honest": true,
+  "attack_active": false,
+  "warmup_rounds": 3,
+  "monitored_rounds": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "cusum_slack": 1.0,
+  "z_cap": 6.0,
+  "probe_client_deviation_top3_rounds": 6,
+  "probe_client_cusum_top3_rounds": 6,
+  "probe_client_deviation_top3_rate": 0.8571428571428571,
+  "probe_client_cusum_top3_rate": 0.8571428571428571,
+  "screening_enabled": false,
+  "aggregation_modified": false,
+  "independent_test_used": false,
+  "interpretation": "Top-3 is a cohort ranking diagnostic, not a calibrated false-positive rate or rejection threshold.",
+  "files": [
+    "phase10_bctcd_clean_client_round_scores.csv",
+    "phase10_bctcd_clean_round_metrics.csv",
+    "phase10_bctcd_clean_baseline_parameters.csv",
+    "phase10_bctcd_clean_client_alert_summary.csv"
+  ]
+}

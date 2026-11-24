@@ -1,0 +1,39 @@
+PHASE 7 — CCTRT V1 DIAGNOSTIC REPORT
+====================================
+
+Scenarios validated: 12
+Client-round rows (poisoned runs): 1200
+Client-score rows: 120
+Partition: CIC-IDS-2017, Class-wise Dirichlet distribution, alpha=0.5, partition seed=43
+Training seeds: 43, 44
+
+MAIN DIAGNOSTIC COMPARISON (mean AUC is descriptive across 12 scenario-specific ten-client evaluations)
+- Paired_Oracle_Deviation: mean AUC=0.9491; range=0.7222–1.0000; top-3 ranks=11/12
+- CCTRT_V1_Diagnostic: mean AUC=0.7222; range=0.3333–1.0000; top-3 ranks=8/12
+- Temporal_Instability_Group: mean AUC=0.6991; range=0.3333–1.0000; top-3 ranks=7/12
+- Direction_Anomaly_Group: mean AUC=0.6157; range=0.4444–0.9444; top-3 ranks=4/12
+- Historical_Memory_Only: mean AUC=0.5926; range=0.2222–1.0000; top-3 ranks=3/12
+- V1_Historical_Group: mean AUC=0.5648; range=0.3333–0.7778; top-3 ranks=2/12
+- V1_Similarity_Group: mean AUC=0.4630; range=0.0000–0.8889; top-3 ranks=3/12
+- V1_Equal_Fusion: mean AUC=0.4259; range=0.1111–0.8889; top-3 ranks=2/12
+- V1_CAVC_Group: mean AUC=0.3102; range=0.0556–0.4444; top-3 ranks=0/12
+
+INTERPRETATION AND LIMITATIONS
+- V1_Equal_Fusion is reconstructed from the archived raw inputs using the V1 direction conventions.
+- CCTRT_V1_Diagnostic is a fixed 50/50 combination of a direction-anomaly group and a within-client temporal-instability group.
+- Temporal instability is the mean absolute round-to-round change in log relative magnitude, magnitude agreement, reference-distance agreement, and Historical Combined_Trust.
+- The CCTRT diagnostic is retrospective over the 10 observed rounds; it is not an online screening implementation.
+- Paired_Oracle_Deviation compares poisoned-client behavior with the matched clean run for each same-seed scenario. It is an offline counterfactual diagnostic and is NOT deployable because a live server does not possess the same client-round clean counterfactual.
+- CAVC remains a separate candidate-model utility diagnostic and is not included in CCTRT V1.
+- ROC-AUC and AP are computed separately within each scenario from 10 clients and one positive client. The 12 scenario summaries are not 120 independent client observations.
+- Results cover three attacker identities, two poisoning strengths, two training seeds, and one fixed non-IID partition. They do not establish cross-partition or cross-dataset generalization.
+- No client screening, model aggregation, model training, checkpoint modification, or independent-test evaluation was performed.
+- No threshold or weights are recommended for deployment.
+
+CLEAN CONTROL FILE CHECKS
+Seed 43 historical_clean_rounds.csv: 1 unique clean-control file hash(es) across 6 scenarios
+Seed 43 similarity_clean_rounds.csv: 1 unique clean-control file hash(es) across 6 scenarios
+Seed 44 historical_clean_rounds.csv: 1 unique clean-control file hash(es) across 6 scenarios
+Seed 44 similarity_clean_rounds.csv: 1 unique clean-control file hash(es) across 6 scenarios
+
+Recommended next validation: evaluate a prospective online version using only past rounds (no matched clean reference), include attack onset after an initial honest warm-up and from round 1, add more attacker identities and partition seeds, then evaluate false-positive rates before any screening experiment.
