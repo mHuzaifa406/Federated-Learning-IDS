@@ -91,7 +91,11 @@ class CCTRTCalibrationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             a = self._make_clean_run(root, 41)
-            b = self._make_clean_run(root, 41)
+            b = self._make_clean_run(root, 42)
+            metadata_path = b / "phase9_metadata.json"
+            metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+            metadata["training_seed"] = 41
+            metadata_path.write_text(json.dumps(metadata), encoding="utf-8")
             with self.assertRaises(ValueError):
                 build_calibration([a, b])
 
