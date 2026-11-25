@@ -105,11 +105,15 @@ def build_calibration(
 
     profile: dict[str, dict[str, float | int]] = {}
     residuals: list[float] = []
+    # Leave-one-run-out residuals prevent a clean run from calibrating
+    # against a reference that includes its own observation.
     for key in sorted(expected):
         sample = np.asarray([m[key] for m in matrices], dtype=float)
         center = float(np.median(sample))
         profile[f"{key[0]}:{key[1]}"] = {"center": center, "n": int(len(sample))}
-        residuals.extend((sample - center).tolist())
+        for run_index, observation in enumerate(sample):
+            reference_sample = np.delete(sample, run_index)
+            residuals.append(float(observation - np.median(reference_sample)))
 
     residual_array = np.asarray(residuals, dtype=float)
     residual_median = float(np.median(residual_array))
