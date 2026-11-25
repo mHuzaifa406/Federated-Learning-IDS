@@ -34,7 +34,29 @@ def main() -> int:
     target = args.target_client if args.target_client is not None else metadata.get("malicious_client")
     onset = args.attack_start_round if args.attack_start_round is not None else metadata.get("attack_start_round")
 
-    calibration = load_calibration(args.calibration)
+    calibration = load_calibration(
+        args.calibration,
+        expected_partition_seed=(
+            int(metadata["partition_seed"]) if metadata.get("partition_seed") is not None else None
+        ),
+        expected_alpha=(
+            float(metadata["dirichlet_alpha"]) if metadata.get("dirichlet_alpha") is not None else None
+        ),
+        expected_rounds=(
+            int(metadata["rounds"]) if metadata.get("rounds") is not None else None
+        ),
+        expected_clients=(
+            int(metadata["clients"]) if metadata.get("clients") is not None else None
+        ),
+    )
+    evaluation_seed = metadata.get("training_seed")
+    if evaluation_seed is not None and int(evaluation_seed) in [
+        int(seed) for seed in calibration["training_seeds"]
+    ]:
+        raise ValueError(
+            "Evaluation training seed appears in calibration seeds; "
+            "choose an independent held-out evaluation run."
+        )
     frame = pd.read_csv(score_path)
     scored = apply_calibration_to_frame(frame, calibration, persistence=args.persistence)
 
