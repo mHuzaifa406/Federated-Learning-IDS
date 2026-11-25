@@ -42,6 +42,7 @@ from trfa.historical_trust_v2 import (
 )
 from trfa.aggregation import aggregate_accepted_models
 from scripts.phase9_cctrt_core import OnlineCCTRTState, attack_active_this_round, poison_eligible_labels
+from trfa.cctrt_calibration import load_calibration, score_calibrated_round
 
 CLIENT_IDS = list(range(1, 11))
 TARGET_LABEL = 0
@@ -65,6 +66,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--poison-seed", type=int, default=2028)
     parser.add_argument("--partition-root", default=str(PROJECT_ROOT / "data" / "processed" / "federated_noniid_alpha05_seed43"))
     parser.add_argument("--output-tag", required=True)
+    parser.add_argument(
+        "--calibration", default=None,
+        help="Optional clean-reference calibration JSON; enables calibrated client screening and accepted-only aggregation."
+    )
+    parser.add_argument(
+        "--persistence", type=int, default=2,
+        help="Consecutive calibrated alerts required before rejecting a client (default: 2)."
+    )
     return parser.parse_args()
 
 
@@ -112,11 +121,28 @@ def evaluate(model: torch.nn.Module, loader) -> dict[str, float]:
 def run(args: argparse.Namespace) -> Path:
     if not 0.0 < args.poison_fraction < 1.0:
         raise ValueError("--poison-fraction must be greater than 0 and less than 1.")
+    if isinstance(args.persistence, bool) or int(args.persistence) < 1:
+        raise ValueError("--persistence must be a positive integer.")
     tag = "".join(c for c in args.output_tag if c.isalnum() or c in "-_")
     if not tag:
         raise ValueError("--output-tag must contain letters, digits, '-' or '_'.")
     data_root = Path(args.partition_root).resolve()
     partition_metadata = load_partition_metadata(data_root)
+    calibration = None
+    if args.calibration:
+        calibration = load_calibration(
+            args.calibration,
+            expected_partition_seed=int(partition_metadata["random_seed"]),
+            expected_alpha=DIRICHLET_ALPHA,
+            expected_rounds=ROUNDS,
+            expected_clients=len(CLIENT_IDS),
+        )
+        if int(args.training_seed) in [int(seed) for seed in calibration["training_seeds"]]:
+            raise ValueError(
+                "Evaluation training seed also appears in calibration seeds; "
+                "use an independent training seed to avoid leakage."
+            )
+    alert_streaks = {cid: 0 for cid in CLIENT_IDS}
     scenario = (f"phase9_delayed_client{args.malicious_client:02d}_p{args.poison_fraction:.4f}"
                 f"_start{args.attack_start_round}_s{args.training_seed}_ps{args.poison_seed}_{tag}")
     output_dir = PROJECT_ROOT / "results" / scenario
@@ -139,7 +165,14 @@ def run(args: argparse.Namespace) -> Path:
     print("Poison fraction of eligible non-Benign records:", f"{args.poison_fraction:.2%}")
     print("Attack start round:", args.attack_start_round)
     print("Warm-up rounds:", args.attack_start_round - 1)
-    print("Screening: DISABLED; all clients aggregated")
+    print(
+        "Screening:",
+        "CALIBRATED TRFA" if calibration is not None else "DISABLED; all clients aggregated"
+    )
+    if calibration is not None:
+        print("Calibration clean seeds:", calibration["training_seeds"])
+        print("Calibration threshold z:", f'{float(calibration["threshold_z"]):.6f}')
+        print("Consecutive alerts required:", args.persistence)
     print("Independent test set: NOT USED")
 
     global_model = IntrusionDetectionMLP().to(engine.DEVICE)
@@ -212,11 +245,46 @@ def run(args: argparse.Namespace) -> Path:
         # Online CCTRT is calculated BEFORE advancing to the next round.
         cctrt_rows = cctrt_state.score_round(round_no, similarity_rows, combined_trust)
 
-        # Calibration only: no trust-based exclusion is allowed in this experiment.
+        # Optional calibrated screening. Calibration profiles are built only
+        # from independent all-honest runs; an alert must persist before exclusion.
+        calibrated_rows: dict[int, dict[str, Any]] = {}
+        if calibration is not None:
+            calibrated_rows = score_calibrated_round(
+                {
+                    cid: {
+                        str(calibration["feature"]): float(
+                            cctrt_rows[cid][str(calibration["feature"])]
+                        )
+                    }
+                    for cid in CLIENT_IDS
+                },
+                round_no,
+                calibration,
+            )
+            for cid in CLIENT_IDS:
+                alert = bool(calibrated_rows[cid]["Calibrated_Alert"])
+                alert_streaks[cid] = alert_streaks[cid] + 1 if alert else 0
+                calibrated_rows[cid]["Consecutive_Alert_Rounds"] = int(alert_streaks[cid])
+                calibrated_rows[cid]["Rejected_By_Calibrated_TRFA"] = bool(
+                    alert_streaks[cid] >= int(args.persistence)
+                )
+
+        rejected_clients = (
+            [cid for cid in CLIENT_IDS
+             if bool(calibrated_rows[cid]["Rejected_By_Calibrated_TRFA"])]
+            if calibration is not None else []
+        )
+        accepted_clients = [cid for cid in CLIENT_IDS if cid not in rejected_clients]
+        if len(accepted_clients) < 2:
+            raise RuntimeError(
+                f"Calibrated screening left only {len(accepted_clients)} accepted clients "
+                f"in round {round_no}; aggregation stopped rather than silently reverting to FedAvg."
+            )
+
         aggregated_state, aggregation_weights = aggregate_accepted_models(
             client_states=client_states,
             sample_sizes=client_sizes,
-            accepted_client_ids=CLIENT_IDS,
+            accepted_client_ids=accepted_clients,
             minimum_accepted_clients=2,
         )
         global_model.load_state_dict(aggregated_state)
@@ -242,6 +310,20 @@ def run(args: argparse.Namespace) -> Path:
                 "Current_Evidence": float(current_evidence[cid]),
                 "Combined_Trust": float(combined_trust[cid]),
                 "Historical_Trust_After": float(updated_history[cid]),
+                "Calibrated_Anomaly_Z": (
+                    float(calibrated_rows[cid]["Calibrated_Anomaly_Z"])
+                    if calibration is not None else np.nan
+                ),
+                "Calibrated_Alert": (
+                    bool(calibrated_rows[cid]["Calibrated_Alert"])
+                    if calibration is not None else False
+                ),
+                "Consecutive_Alert_Rounds": (
+                    int(calibrated_rows[cid]["Consecutive_Alert_Rounds"])
+                    if calibration is not None else 0
+                ),
+                "Rejected_By_Calibrated_TRFA": cid in rejected_clients,
+                "Accepted_For_Aggregation": cid in accepted_clients,
                 **{k: float(v) for k, v in similarity_rows[cid].items()},
                 **cctrt_rows[cid],
             })
@@ -252,7 +334,11 @@ def run(args: argparse.Namespace) -> Path:
             "Poisoned_Records": int(round_poisoned),
             "Validation_Loss": val_loss,
             **{f"Validation_{k}": v for k, v in metrics.items()},
-            "Accepted_Clients": len(CLIENT_IDS),
+            "Accepted_Clients": len(accepted_clients),
+            "Rejected_Clients": len(rejected_clients),
+            "Accepted_Client_IDs": json.dumps(accepted_clients),
+            "Rejected_Client_IDs": json.dumps(rejected_clients),
+            "Screening_Enabled": calibration is not None,
             "Aggregation_Weight_Sum": float(sum(aggregation_weights.values())),
         })
         torch.save({
@@ -290,15 +376,41 @@ def run(args: argparse.Namespace) -> Path:
             "Target_Top1": target_rank == 1,
             "Target_Top3": target_rank <= 3,
             "Honest_Mean_CCTRT_Score": float(group[group["Client"] != args.malicious_client]["CCTRT_Causal_Score"].mean()),
+            "Target_Calibrated_Anomaly_Z": (
+                float(target_row["Calibrated_Anomaly_Z"]) if calibration is not None else np.nan
+            ),
+            "Target_Calibrated_Alert": (
+                bool(target_row["Calibrated_Alert"]) if calibration is not None else False
+            ),
+            "Target_Rejected": (
+                bool(target_row["Rejected_By_Calibrated_TRFA"]) if calibration is not None else False
+            ),
+            "Honest_Excluded_Count": int(
+                group[
+                    (group["Client"] != args.malicious_client)
+                    & (group["Rejected_By_Calibrated_TRFA"] == True)
+                ].shape[0]
+            ),
         }
         if active:
             y_true = group["Client"].eq(args.malicious_client).astype(int).to_numpy()
             y_score = group["CCTRT_Causal_Score"].astype(float).to_numpy()
             row["ROC_AUC"] = float(roc_auc_score(y_true, y_score))
             row["Average_Precision"] = float(average_precision_score(y_true, y_score))
+            if calibration is not None:
+                calibrated_score = group["Calibrated_Anomaly_Z"].astype(float).to_numpy()
+                row["Calibrated_ROC_AUC"] = float(roc_auc_score(y_true, calibrated_score))
+                row["Calibrated_Average_Precision"] = float(
+                    average_precision_score(y_true, calibrated_score)
+                )
+            else:
+                row["Calibrated_ROC_AUC"] = np.nan
+                row["Calibrated_Average_Precision"] = np.nan
         else:
             row["ROC_AUC"] = np.nan
             row["Average_Precision"] = np.nan
+            row["Calibrated_ROC_AUC"] = np.nan
+            row["Calibrated_Average_Precision"] = np.nan
         metric_rows.append(row)
 
     scores_path = output_dir / "phase9_client_round_scores.csv"
@@ -335,8 +447,13 @@ def run(args: argparse.Namespace) -> Path:
         "mean_active_round_roc_auc": float(active_metrics["ROC_AUC"].mean()) if not active_metrics.empty else None,
         "active_round_top3_rate": float(active_metrics["Target_Top3"].mean()) if not active_metrics.empty else None,
         "pre_attack_target_top3_rounds": int(pre_metrics["Target_Top3"].sum()),
-        "screening_enabled": False,
-        "all_clients_aggregated": True,
+        "screening_enabled": calibration is not None,
+        "screening_method": "clean-reference CCTRT calibrated threshold with persistence" if calibration is not None else "none",
+        "calibration_training_seeds": calibration["training_seeds"] if calibration is not None else [],
+        "calibration_threshold_z": float(calibration["threshold_z"]) if calibration is not None else None,
+        "calibration_quantile": float(calibration["quantile"]) if calibration is not None else None,
+        "persistence_rounds": int(args.persistence) if calibration is not None else None,
+        "all_clients_aggregated": calibration is None,
         "independent_test_set_used": False,
         "cavc_used_in_online_score": False,
         "causality": "Each round score is calculated before next round using current round and prior client observations only.",
@@ -369,7 +486,12 @@ def run(args: argparse.Namespace) -> Path:
         f"Active-round top-3 rate: {metadata['active_round_top3_rate']}",
         f"Pre-attack target top-3 rounds: {metadata['pre_attack_target_top3_rounds']} of {len(pre_metrics)}",
         "",
-        "No screening; all clients aggregated; independent test set not used.",
+        (
+            "Calibrated screening enabled; accepted-only sample-size-weighted FedAvg used."
+            if calibration is not None else
+            "No screening; all clients aggregated."
+        ),
+        "Independent test set not used.",
         "ROC-AUC is reported only after attack onset. Before onset, all clients behave honestly.",
     ]
     (output_dir / "phase9_summary.txt").write_text("\n".join(summary), encoding="utf-8")
@@ -385,7 +507,7 @@ def run(args: argparse.Namespace) -> Path:
     print("Top-3 rate after onset:", f"{metadata['active_round_top3_rate']:.6f}" if metadata["active_round_top3_rate"] is not None else "N/A")
     print("Pre-attack target top-3 rounds:", f"{metadata['pre_attack_target_top3_rounds']}/{len(pre_metrics)}")
     print("Output directory:", output_dir)
-    print("Screening enabled: NO; all clients aggregated")
+    print("Screening enabled:", "YES" if calibration is not None else "NO")
     print("Independent test used: NO")
 
     del validation_X, validation_y, validation_loader, global_model
