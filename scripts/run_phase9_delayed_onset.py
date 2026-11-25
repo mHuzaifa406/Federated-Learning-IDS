@@ -5,7 +5,9 @@ onward, the configured share of its eligible non-Benign local labels is flipped
 to Benign in every communication round. Every round's CCTRT score is computed
 immediately using only current and earlier-round observations.
 
-Diagnostic only: all clients are aggregated; no screening or independent test.
+By default the runner is diagnostic and aggregates all clients. Supplying
+--calibration enables clean-reference calibrated screening and accepted-only
+aggregation. The independent test set is never used by this runner.
 """
 from __future__ import annotations
 
