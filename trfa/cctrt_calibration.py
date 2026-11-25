@@ -60,10 +60,10 @@ def build_calibration(
     *,
     quantile: float = 0.975,
 ) -> dict[str, Any]:
-    """Build a per-client/per-round clean reference from >=3 distinct seeds."""
+    """Build a per-client/per-round clean reference from >=2 distinct seeds."""
     dirs = [Path(p).expanduser().resolve() for p in clean_run_dirs]
-    if len(dirs) < 3:
-        raise ValueError("At least three independent all-honest calibration runs are required.")
+    if len(dirs) < 2:
+        raise ValueError("At least two independent all-honest calibration runs are required; three or more are recommended.")
     if len(set(dirs)) != len(dirs):
         raise ValueError("Duplicate calibration directories were supplied.")
     if not math.isfinite(float(quantile)) or not 0.90 <= float(quantile) < 1.0:
@@ -147,6 +147,11 @@ def build_calibration(
         "calibration_directories": [str(p) for p in dirs],
         "profile": profile,
         "limitations": [
+            (
+                "Only two independent clean calibration seeds were used; threshold estimates are preliminary."
+                if len(dirs) == 2 else
+                "Calibration uses three or more independent clean seeds."
+            ),
             "Thresholds are estimated from clean calibration trajectories only.",
             "This calibration is specific to the recorded partition, feature pipeline and training configuration.",
             "The anomaly score is not a calibrated probability of maliciousness.",
