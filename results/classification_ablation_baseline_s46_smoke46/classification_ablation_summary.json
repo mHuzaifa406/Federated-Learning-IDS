@@ -1,0 +1,225 @@
+{
+  "experiment": "clean_classification_ablation",
+  "dataset": "CIC-IDS-2017",
+  "mode": "baseline",
+  "training_seed": 46,
+  "partition_root": "E:\\IoMT_FL_IDS_TRFA\\data\\processed\\federated_v2",
+  "rounds": 2,
+  "local_epochs": 1,
+  "learning_rate": 0.01,
+  "clients": 10,
+  "features": 78,
+  "classes": [
+    "Benign",
+    "Bot",
+    "DoS",
+    "Infiltration",
+    "PortScan",
+    "Web Attack",
+    "Brute Force"
+  ],
+  "global_training_class_counts": [
+    1726202,
+    1487,
+    288609,
+    27,
+    120692,
+    1657,
+    10513
+  ],
+  "class_weights_method": "capped_inverse_square_root_frequency",
+  "class_weights_cap": 10.0,
+  "normalized_class_weights": [
+    0.14821872721319956,
+    1.4821872721319955,
+    0.3624882656309119,
+    1.4821872721319955,
+    0.5605439186279059,
+    1.4821872721319955,
+    1.4821872721319955
+  ],
+  "sampler_method": "local_capped_power_law_weighted_random_sampler",
+  "sampler_power": 0.25,
+  "sampler_weight_cap": 8.0,
+  "validation_only_model_development": true,
+  "independent_test_set_used": false,
+  "round_results": [
+    {
+      "round": 1,
+      "validation_loss": 0.42558632192392826,
+      "validation_accuracy": 0.8855953180805545,
+      "validation_balanced_accuracy": 0.23197500625282994,
+      "validation_macro_f1": 0.24249248262576334,
+      "validation_weighted_f1": 0.8523043230868895,
+      "validation_validation_records": 113116,
+      "accepted_clients": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "excluded_clients": []
+    },
+    {
+      "round": 2,
+      "validation_loss": 0.3319997364916826,
+      "validation_accuracy": 0.887885003005764,
+      "validation_balanced_accuracy": 0.2338233966303847,
+      "validation_macro_f1": 0.2443049936694006,
+      "validation_weighted_f1": 0.8548753566232294,
+      "validation_validation_records": 113116,
+      "accepted_clients": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "excluded_clients": []
+    }
+  ],
+  "final_validation_metrics": {
+    "accuracy": 0.887885003005764,
+    "balanced_accuracy": 0.2338233966303847,
+    "macro_f1": 0.2443049936694006,
+    "weighted_f1": 0.8548753566232294,
+    "validation_records": 113116,
+    "class_counts": {
+      "Benign": 90854,
+      "Bot": 78,
+      "DoS": 15190,
+      "Infiltration": 2,
+      "PortScan": 6352,
+      "Web Attack": 87,
+      "Brute Force": 553
+    },
+    "per_class_metrics": {
+      "Benign": {
+        "precision": 0.8783479009979577,
+        "recall": 0.998778259625333,
+        "f1": 0.9346998686684006,
+        "support": 90854,
+        "predicted_count": 103311
+      },
+      "Bot": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 78,
+        "predicted_count": 0
+      },
+      "DoS": {
+        "precision": 0.9883732789393167,
+        "recall": 0.6379855167873602,
+        "f1": 0.7754350870174035,
+        "support": 15190,
+        "predicted_count": 9805
+      },
+      "Infiltration": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 2,
+        "predicted_count": 0
+      },
+      "PortScan": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 6352,
+        "predicted_count": 0
+      },
+      "Web Attack": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 87,
+        "predicted_count": 0
+      },
+      "Brute Force": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 553,
+        "predicted_count": 0
+      }
+    },
+    "confusion_matrix_rows_true_columns_predicted": [
+      [
+        90743,
+        0,
+        111,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        78,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        5499,
+        0,
+        9691,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        6349,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        87,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        553,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ]
+  },
+  "final_checkpoint": "phase11_round_02.pt"
+}

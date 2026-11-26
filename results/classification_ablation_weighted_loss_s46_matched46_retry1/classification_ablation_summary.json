@@ -1,0 +1,401 @@
+{
+  "experiment": "clean_classification_ablation",
+  "dataset": "CIC-IDS-2017",
+  "mode": "weighted_loss",
+  "training_seed": 46,
+  "partition_root": "E:\\IoMT_FL_IDS_TRFA\\data\\processed\\federated_v2",
+  "rounds": 10,
+  "local_epochs": 1,
+  "learning_rate": 0.01,
+  "clients": 10,
+  "features": 78,
+  "classes": [
+    "Benign",
+    "Bot",
+    "DoS",
+    "Infiltration",
+    "PortScan",
+    "Web Attack",
+    "Brute Force"
+  ],
+  "global_training_class_counts": [
+    1726202,
+    1487,
+    288609,
+    27,
+    120692,
+    1657,
+    10513
+  ],
+  "class_weights_method": "capped_inverse_square_root_frequency",
+  "class_weights_cap": 10.0,
+  "normalized_class_weights": [
+    0.14821872721319956,
+    1.4821872721319955,
+    0.3624882656309119,
+    1.4821872721319955,
+    0.5605439186279059,
+    1.4821872721319955,
+    1.4821872721319955
+  ],
+  "sampler_method": "local_capped_power_law_weighted_random_sampler",
+  "sampler_power": 0.25,
+  "sampler_weight_cap": 8.0,
+  "validation_only_model_development": true,
+  "independent_test_set_used": false,
+  "round_results": [
+    {
+      "round": 1,
+      "validation_loss": 0.47022214480996694,
+      "validation_accuracy": 0.8771880193783372,
+      "validation_balanced_accuracy": 0.23280586523159924,
+      "validation_macro_f1": 0.23854160479799408,
+      "validation_weighted_f1": 0.8449327125977714,
+      "validation_validation_records": 113116,
+      "accepted_clients": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "excluded_clients": []
+    },
+    {
+      "round": 2,
+      "validation_loss": 0.29105533567613595,
+      "validation_accuracy": 0.9223982460483044,
+      "validation_balanced_accuracy": 0.38619394125841877,
+      "validation_macro_f1": 0.36600683847723026,
+      "validation_weighted_f1": 0.9205622291817982,
+      "validation_validation_records": 113116,
+      "accepted_clients": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "excluded_clients": []
+    },
+    {
+      "round": 3,
+      "validation_loss": 0.2235784636195029,
+      "validation_accuracy": 0.9377541638671806,
+      "validation_balanced_accuracy": 0.40993140203663714,
+      "validation_macro_f1": 0.37847370676683767,
+      "validation_weighted_f1": 0.9375414166019094,
+      "validation_validation_records": 113116,
+      "accepted_clients": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "excluded_clients": []
+    },
+    {
+      "round": 4,
+      "validation_loss": 0.19892783559377444,
+      "validation_accuracy": 0.940980939920082,
+      "validation_balanced_accuracy": 0.41166966033748353,
+      "validation_macro_f1": 0.3837389350832245,
+      "validation_weighted_f1": 0.9399679861807291,
+      "validation_validation_records": 113116,
+      "accepted_clients": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "excluded_clients": []
+    },
+    {
+      "round": 5,
+      "validation_loss": 0.18448588802502622,
+      "validation_accuracy": 0.9410516637787758,
+      "validation_balanced_accuracy": 0.4125594572239161,
+      "validation_macro_f1": 0.38543136232295605,
+      "validation_weighted_f1": 0.9399303793892366,
+      "validation_validation_records": 113116,
+      "accepted_clients": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "excluded_clients": []
+    },
+    {
+      "round": 6,
+      "validation_loss": 0.17699070179823698,
+      "validation_accuracy": 0.9418207857420701,
+      "validation_balanced_accuracy": 0.412758912825507,
+      "validation_macro_f1": 0.3860655614294216,
+      "validation_weighted_f1": 0.9406395466497897,
+      "validation_validation_records": 113116,
+      "accepted_clients": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "excluded_clients": []
+    },
+    {
+      "round": 7,
+      "validation_loss": 0.17075423596750844,
+      "validation_accuracy": 0.945843205205276,
+      "validation_balanced_accuracy": 0.41320021580481614,
+      "validation_macro_f1": 0.38830268460718553,
+      "validation_weighted_f1": 0.9443806310293879,
+      "validation_validation_records": 113116,
+      "accepted_clients": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "excluded_clients": []
+    },
+    {
+      "round": 8,
+      "validation_loss": 0.16534050519549276,
+      "validation_accuracy": 0.947310725273171,
+      "validation_balanced_accuracy": 0.4137510263005755,
+      "validation_macro_f1": 0.38918307343282565,
+      "validation_weighted_f1": 0.9457819385595677,
+      "validation_validation_records": 113116,
+      "accepted_clients": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "excluded_clients": []
+    },
+    {
+      "round": 9,
+      "validation_loss": 0.16082285421691095,
+      "validation_accuracy": 0.948274337847873,
+      "validation_balanced_accuracy": 0.4142888269054529,
+      "validation_macro_f1": 0.390261675923027,
+      "validation_weighted_f1": 0.9467675658295415,
+      "validation_validation_records": 113116,
+      "accepted_clients": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "excluded_clients": []
+    },
+    {
+      "round": 10,
+      "validation_loss": 0.15651248851082628,
+      "validation_accuracy": 0.9506524275964496,
+      "validation_balanced_accuracy": 0.44461159557284696,
+      "validation_macro_f1": 0.43382544962701036,
+      "validation_weighted_f1": 0.9503779352604629,
+      "validation_validation_records": 113116,
+      "accepted_clients": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "excluded_clients": []
+    }
+  ],
+  "final_validation_metrics": {
+    "accuracy": 0.9506524275964496,
+    "balanced_accuracy": 0.44461159557284696,
+    "macro_f1": 0.43382544962701036,
+    "weighted_f1": 0.9503779352604629,
+    "validation_records": 113116,
+    "class_counts": {
+      "Benign": 90854,
+      "Bot": 78,
+      "DoS": 15190,
+      "Infiltration": 2,
+      "PortScan": 6352,
+      "Web Attack": 87,
+      "Brute Force": 553
+    },
+    "per_class_metrics": {
+      "Benign": {
+        "precision": 0.9870202388549548,
+        "recall": 0.9533207123516851,
+        "f1": 0.9698778316517922,
+        "support": 90854,
+        "predicted_count": 87752
+      },
+      "Bot": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 78,
+        "predicted_count": 0
+      },
+      "DoS": {
+        "precision": 0.8590198863636364,
+        "recall": 0.9554970375246873,
+        "f1": 0.9046936358536434,
+        "support": 15190,
+        "predicted_count": 16896
+      },
+      "Infiltration": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 2,
+        "predicted_count": 0
+      },
+      "PortScan": {
+        "precision": 0.763784308962837,
+        "recall": 0.9900818639798489,
+        "f1": 0.8623337446866859,
+        "support": 6352,
+        "predicted_count": 8234
+      },
+      "Web Attack": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 87,
+        "predicted_count": 0
+      },
+      "Brute Force": {
+        "precision": 0.5042735042735043,
+        "recall": 0.21338155515370705,
+        "f1": 0.29987293519695046,
+        "support": 553,
+        "predicted_count": 234
+      }
+    },
+    "confusion_matrix_rows_true_columns_predicted": [
+      [
+        86613,
+        0,
+        2374,
+        0,
+        1764,
+        0,
+        103
+      ],
+      [
+        64,
+        0,
+        0,
+        0,
+        14,
+        0,
+        0
+      ],
+      [
+        663,
+        0,
+        14514,
+        0,
+        0,
+        0,
+        13
+      ],
+      [
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        58,
+        0,
+        5,
+        0,
+        6289,
+        0,
+        0
+      ],
+      [
+        85,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        268,
+        0,
+        0,
+        0,
+        167,
+        0,
+        118
+      ]
+    ]
+  },
+  "final_checkpoint": "phase11_round_10.pt"
+}

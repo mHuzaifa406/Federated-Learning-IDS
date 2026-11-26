@@ -1,0 +1,171 @@
+{
+  "evaluation": "independent_test_checkpoint_evaluation",
+  "test_set_used_for_training_or_calibration": false,
+  "checkpoint_path": "E:\\IoMT_FL_IDS_TRFA\\results\\phase9_delayed_client07_p0.0500_start6_s45_ps2028_client07_baseline_s45\\phase9_round_10.pt",
+  "checkpoint_round": 10,
+  "checkpoint_attack_active": true,
+  "checkpoint_attack_start_round": 6,
+  "device": "cpu",
+  "test_directory": "E:\\IoMT_FL_IDS_TRFA\\data\\processed\\normalized_v1\\test",
+  "test_files": {
+    "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv.parquet": 45064,
+    "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv.parquet": 57440,
+    "Friday-WorkingHours-Morning.pcap_ISCX.csv.parquet": 38076,
+    "Monday-WorkingHours.pcap_ISCX.csv.parquet": 105786,
+    "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv.parquet": 57832,
+    "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv.parquet": 34210,
+    "Tuesday-WorkingHours.pcap_ISCX.csv.parquet": 89029,
+    "Wednesday-workingHours.pcap_ISCX.csv.parquet": 138136
+  },
+  "test_records": 565573,
+  "number_of_features": 78,
+  "number_of_classes": 7,
+  "accuracy": 0.9517056153670702,
+  "balanced_accuracy": 0.39351911757417074,
+  "macro_f1": 0.3894494927038642,
+  "weighted_f1": 0.9483034414332857,
+  "benign_false_alarm_count": 7941,
+  "benign_false_alarm_rate": 0.017481024250215735,
+  "attack_to_benign_count": 18425,
+  "attack_to_benign_rate": 0.1655301907303093,
+  "class_counts": {
+    "0": 454264,
+    "1": 391,
+    "2": 75949,
+    "3": 7,
+    "4": 31760,
+    "5": 436,
+    "6": 2766
+  },
+  "per_class_metrics": {
+    "0": {
+      "class_name": "Benign",
+      "precision": 0.9603548589773383,
+      "recall": 0.9825189757497843,
+      "f1": 0.9713104943134584,
+      "support": 454264,
+      "predicted_as_benign_count": null,
+      "predicted_as_benign_rate": null
+    },
+    "1": {
+      "class_name": "Bot",
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 391,
+      "predicted_as_benign_count": 296,
+      "predicted_as_benign_rate": 0.7570332480818415
+    },
+    "2": {
+      "class_name": "DoS",
+      "precision": 0.9946113518689844,
+      "recall": 0.8068440664129877,
+      "f1": 0.8909421343413783,
+      "support": 75949,
+      "predicted_as_benign_count": 14670,
+      "predicted_as_benign_rate": 0.19315593358701233
+    },
+    "3": {
+      "class_name": "Infiltration",
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 7,
+      "predicted_as_benign_count": 7,
+      "predicted_as_benign_rate": 1.0
+    },
+    "4": {
+      "class_name": "PortScan",
+      "precision": 0.7817871168460244,
+      "recall": 0.9652707808564231,
+      "f1": 0.8638938202722124,
+      "support": 31760,
+      "predicted_as_benign_count": 1083,
+      "predicted_as_benign_rate": 0.034099496221662466
+    },
+    "5": {
+      "class_name": "Web Attack",
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 436,
+      "predicted_as_benign_count": 436,
+      "predicted_as_benign_rate": 1.0
+    },
+    "6": {
+      "class_name": "Brute Force",
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 2766,
+      "predicted_as_benign_count": 1933,
+      "predicted_as_benign_rate": 0.6988430947216197
+    }
+  },
+  "confusion_matrix_rows_true_columns_predicted": [
+    [
+      446323,
+      0,
+      312,
+      0,
+      7629,
+      0,
+      0
+    ],
+    [
+      296,
+      0,
+      0,
+      0,
+      95,
+      0,
+      0
+    ],
+    [
+      14670,
+      0,
+      61279,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      7,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1083,
+      0,
+      20,
+      0,
+      30657,
+      0,
+      0
+    ],
+    [
+      436,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1933,
+      0,
+      0,
+      0,
+      833,
+      0,
+      0
+    ]
+  ],
+  "interpretation_note": "This evaluates the saved checkpoint on the held-out test set. Do not use these results to tune the detector threshold or model."
+}
