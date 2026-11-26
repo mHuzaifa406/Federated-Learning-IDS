@@ -1,0 +1,147 @@
+{
+  "experiment": "binary_clean_fedavg",
+  "paper_alignment": "Binary IDS classification as explicitly stated in Yang et al. Section 4.1; all non-Benign CIC-IDS-2017 classes are collapsed into Attack.",
+  "not_exact_reproduction": "The paper does not fully disclose the model architecture and all preprocessing details. This run uses the project's 78-128-64-2 MLP, current partition, and validation split.",
+  "dataset": "CIC-IDS-2017",
+  "training_seed": 46,
+  "partition_root": "E:\\IoMT_FL_IDS_TRFA\\data\\processed\\federated_v2",
+  "number_of_clients": 10,
+  "rounds": 2,
+  "local_epochs": 1,
+  "learning_rate": 0.01,
+  "batch_size": 512,
+  "number_of_features": 78,
+  "number_of_classes": 2,
+  "label_mapping": {
+    "Benign": 0,
+    "Attack": 1
+  },
+  "global_training_class_counts": {
+    "Benign": 1726202,
+    "Attack": 422985
+  },
+  "validation_class_counts": {
+    "Benign": 90854,
+    "Attack": 22262
+  },
+  "validation_only_model_development": true,
+  "independent_test_set_used": false,
+  "round_results": [
+    {
+      "round": 1,
+      "validation_loss": 0.3218820464590398,
+      "validation_accuracy": 0.8851974963754022,
+      "validation_balanced_accuracy": 0.7133222764438966,
+      "validation_macro_f1": 0.7644387649315754,
+      "validation_weighted_f1": 0.8667116740215244,
+      "validation_validation_records": 113116,
+      "validation_per_class_metrics": {
+        "Benign": {
+          "precision": 0.8770774415991942,
+          "recall": 0.9967640390076387,
+          "f1": 0.9330984101470331,
+          "support": 90854,
+          "predicted_count": 103252
+        },
+        "Attack": {
+          "precision": 0.9701946472019465,
+          "recall": 0.4298805138801545,
+          "f1": 0.5957791197161177,
+          "support": 22262,
+          "predicted_count": 9864
+        }
+      },
+      "validation_benign_false_alarm_count": 294,
+      "validation_benign_false_alarm_rate": 0.003235960992361371,
+      "validation_attack_to_benign_count": 12692,
+      "validation_attack_to_benign_rate": 0.5701194861198455,
+      "validation_confusion_matrix_rows_true_columns_predicted": [
+        [
+          90560,
+          294
+        ],
+        [
+          12692,
+          9570
+        ]
+      ]
+    },
+    {
+      "round": 2,
+      "validation_loss": 0.23819071889332546,
+      "validation_accuracy": 0.8877523957707133,
+      "validation_balanced_accuracy": 0.7176257741757581,
+      "validation_macro_f1": 0.7698663962267984,
+      "validation_weighted_f1": 0.8697445627149739,
+      "validation_validation_records": 113116,
+      "validation_per_class_metrics": {
+        "Benign": {
+          "precision": 0.878590596874667,
+          "recall": 0.9981838994430625,
+          "f1": 0.9345768388509597,
+          "support": 90854,
+          "predicted_count": 103221
+        },
+        "Attack": {
+          "precision": 0.9833249115715007,
+          "recall": 0.43706764890845384,
+          "f1": 0.6051559536026371,
+          "support": 22262,
+          "predicted_count": 9895
+        }
+      },
+      "validation_benign_false_alarm_count": 165,
+      "validation_benign_false_alarm_rate": 0.001816100556937504,
+      "validation_attack_to_benign_count": 12532,
+      "validation_attack_to_benign_rate": 0.5629323510915462,
+      "validation_confusion_matrix_rows_true_columns_predicted": [
+        [
+          90689,
+          165
+        ],
+        [
+          12532,
+          9730
+        ]
+      ]
+    }
+  ],
+  "final_validation_metrics": {
+    "accuracy": 0.8877523957707133,
+    "balanced_accuracy": 0.7176257741757581,
+    "macro_f1": 0.7698663962267984,
+    "weighted_f1": 0.8697445627149739,
+    "validation_records": 113116,
+    "per_class_metrics": {
+      "Benign": {
+        "precision": 0.878590596874667,
+        "recall": 0.9981838994430625,
+        "f1": 0.9345768388509597,
+        "support": 90854,
+        "predicted_count": 103221
+      },
+      "Attack": {
+        "precision": 0.9833249115715007,
+        "recall": 0.43706764890845384,
+        "f1": 0.6051559536026371,
+        "support": 22262,
+        "predicted_count": 9895
+      }
+    },
+    "benign_false_alarm_count": 165,
+    "benign_false_alarm_rate": 0.001816100556937504,
+    "attack_to_benign_count": 12532,
+    "attack_to_benign_rate": 0.5629323510915462,
+    "confusion_matrix_rows_true_columns_predicted": [
+      [
+        90689,
+        165
+      ],
+      [
+        12532,
+        9730
+      ]
+    ]
+  },
+  "final_checkpoint": "binary_round_02.pt"
+}
