@@ -1,0 +1,22 @@
+{
+  "evaluation_type": "delayed_onset_attack",
+  "target_client": 7,
+  "attack_start_round": 6,
+  "calibration_training_seeds": [
+    41,
+    42
+  ],
+  "calibration_threshold_z": 1.4595893009087253,
+  "persistence_rounds": 2,
+  "active_rounds": 5,
+  "target_detected_active_rounds": 3,
+  "target_detection_rate": 0.6,
+  "first_detection_round": 8,
+  "detection_delay_rounds": 3,
+  "honest_client_round_opportunities": 90,
+  "false_excluded_honest_client_rounds": 0,
+  "honest_false_exclusion_rate": 0.0,
+  "target_false_alerts_before_onset": 0,
+  "mean_active_round_auc": 0.9777777777777779,
+  "mean_active_round_average_precision": 0.9
+}
