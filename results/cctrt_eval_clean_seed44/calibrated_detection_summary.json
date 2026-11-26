@@ -1,0 +1,14 @@
+{
+  "evaluation_type": "all_honest_control",
+  "target_client": null,
+  "calibration_training_seeds": [
+    41,
+    42
+  ],
+  "calibration_threshold_z": 3.156852491937084,
+  "persistence_rounds": 2,
+  "client_round_opportunities": 100,
+  "false_excluded_client_rounds": 0,
+  "false_exclusion_rate": 0.0,
+  "false_excluded_clients": []
+}

@@ -1,0 +1,11 @@
+Round,Attack_Active,Target_Client,Target_CCTRT_Score,Target_Rank_Most_Suspicious_First,Target_Top1,Target_Top3,Other_Clients_Mean_CCTRT_Score,ROC_AUC,Average_Precision
+1,False,5,0.7,2,False,True,0.5055555555555554,,
+2,False,5,0.925,1,True,True,0.5083333333333333,,
+3,False,5,0.8875000000000001,1,True,True,0.5125,,
+4,False,5,0.825,2,False,True,0.5194444444444444,,
+5,False,5,0.7999999999999999,2,False,True,0.5222222222222223,,
+6,False,5,0.7749999999999999,2,False,True,0.5249999999999999,,
+7,False,5,0.7625,2,False,True,0.5263888888888889,,
+8,False,5,0.7625,2,False,True,0.526388888888889,,
+9,False,5,0.7375,2,False,True,0.5291666666666667,,
+10,False,5,0.6875,2,False,True,0.5347222222222221,,
