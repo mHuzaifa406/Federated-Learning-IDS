@@ -371,7 +371,7 @@ def run(args: argparse.Namespace) -> Path:
             "Percentile scores are cohort-relative rankings and are not calibrated attack probabilities.",
             "CAVC is excluded because the existing CAVC V2 tool is a frozen-checkpoint local-candidate diagnostic, not a per-round online signal.",
             "The same non-IID partition is retained; this is a delayed-onset test, not partition generalization.",
-            "Server-validation metrics are development diagnostics; the independent test set is untouched.",
+            "Server-validation metrics are development diagnostics; this run does not use the reserved test split. That split was inspected in earlier seven-class project analyses and must not be described as historically unseen.",
         ],
         "files": {
             "client_round_scores": scores_path.name,
