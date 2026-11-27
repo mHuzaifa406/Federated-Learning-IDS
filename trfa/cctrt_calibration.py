@@ -77,6 +77,28 @@ def build_calibration(
     if len(set(seeds)) != len(seeds):
         raise ValueError(f"Calibration training seeds must be distinct; found {seeds}.")
 
+    # Calibration must be tied to one precisely specified learning task and model.
+    tasks = {str(m.get("classification_task", "")) for m in metadata}
+    model_configs = [m.get("model_config") for m in metadata]
+    training_configs = [
+        {
+            "local_epochs": m.get("local_epochs"),
+            "learning_rate": m.get("learning_rate"),
+            "batch_size": m.get("batch_size"),
+        }
+        for m in metadata
+    ]
+    if "" in tasks or len(tasks) != 1:
+        raise ValueError("Every clean run must declare the same non-empty classification_task.")
+    if any(not isinstance(config, dict) or not config for config in model_configs):
+        raise ValueError("Every clean run must declare a non-empty model_config.")
+    if len({json.dumps(config, sort_keys=True) for config in model_configs}) != 1:
+        raise ValueError("Clean calibration runs use different model configurations.")
+    if any(any(value is None for value in config.values()) for config in training_configs):
+        raise ValueError("Every clean run must declare local_epochs, learning_rate and batch_size.")
+    if len({json.dumps(config, sort_keys=True) for config in training_configs}) != 1:
+        raise ValueError("Clean calibration runs use different local training configurations.")
+
     partition_seeds = {int(m["partition_seed"]) for m in metadata}
     alphas = {round(float(m["dirichlet_alpha"]), 10) for m in metadata}
     round_counts = {int(m["rounds"]) for m in metadata}
@@ -138,6 +160,9 @@ def build_calibration(
         "threshold_z": threshold_z,
         "quantile": float(quantile),
         "pooled_clean_residual_scale": robust_scale,
+        "classification_task": next(iter(tasks)),
+        "model_config": model_configs[0],
+        "training_configuration": training_configs[0],
         "partition_seed": next(iter(partition_seeds)),
         "dirichlet_alpha": next(iter(alphas)),
         "rounds": rounds,
@@ -174,6 +199,9 @@ def load_calibration(
     expected_alpha: float | None = None,
     expected_rounds: int | None = None,
     expected_clients: int | None = None,
+    expected_classification_task: str | None = None,
+    expected_model_config: dict[str, Any] | None = None,
+    expected_training_configuration: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     path = Path(calibration_path).expanduser().resolve()
     if not path.is_file():
@@ -189,6 +217,12 @@ def load_calibration(
         raise ValueError("Calibration round count does not match the evaluation run.")
     if expected_clients is not None and int(model["clients"]) != int(expected_clients):
         raise ValueError("Calibration client count does not match the evaluation run.")
+    if expected_classification_task is not None and model.get("classification_task") != expected_classification_task:
+        raise ValueError("Calibration classification task does not match the evaluation model.")
+    if expected_model_config is not None and model.get("model_config") != expected_model_config:
+        raise ValueError("Calibration model configuration does not match the evaluation model.")
+    if expected_training_configuration is not None and model.get("training_configuration") != expected_training_configuration:
+        raise ValueError("Calibration training configuration does not match the evaluation run.")
     if not math.isfinite(float(model["pooled_clean_residual_scale"])) or float(model["pooled_clean_residual_scale"]) <= 0:
         raise ValueError("Calibration scale must be positive and finite.")
     return model
