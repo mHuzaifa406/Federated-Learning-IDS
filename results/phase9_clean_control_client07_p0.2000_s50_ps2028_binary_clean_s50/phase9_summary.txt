@@ -1,0 +1,13 @@
+PHASE 9 — MATCHED ALL-HONEST CONTROL WITH ONLINE/Causal CCTRT
+===============================================================
+Probe client (honest in every round): 7
+Attack active: never
+Paired attack fraction (metadata only): 20.000000%
+Poisoned records per round: 0
+Clean rounds: 1-10
+Mean active-round ROC-AUC: None
+Active-round top-3 rate: None
+Pre-attack target top-3 rounds: 7 of 10
+
+No screening; all clients aggregated; independent test set not used.
+No attack exists in this control, so ROC-AUC is not applicable.

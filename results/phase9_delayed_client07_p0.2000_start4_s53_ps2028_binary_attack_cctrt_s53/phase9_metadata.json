@@ -1,0 +1,58 @@
+{
+  "phase": "Phase 9 delayed-onset poisoning",
+  "method": "Online/Causal CCTRT V1",
+  "dataset": "CIC-IDS-2017",
+  "partition_root": "E:\\IoMT_FL_IDS_TRFA\\data\\processed\\federated_noniid_alpha05_seed43",
+  "dirichlet_alpha": 0.5,
+  "partition_seed": 43,
+  "training_seed": 53,
+  "poison_seed": 2028,
+  "clients": 10,
+  "rounds": 10,
+  "malicious_client": 7,
+  "attack_start_round": 4,
+  "warmup_rounds": 3,
+  "poison_fraction_of_eligible_nonbenign": 0.2,
+  "poisoned_records_per_active_round": 9354,
+  "eligible_nonbenign_records": 46774,
+  "malicious_client_records": 46774,
+  "actual_fraction_of_eligible": 0.19998289648095097,
+  "actual_fraction_of_client": 0.19998289648095097,
+  "active_rounds": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "mean_active_round_roc_auc": 0.9047619047619049,
+  "active_round_top3_rate": 1.0,
+  "pre_attack_target_top3_rounds": 3,
+  "screening_enabled": true,
+  "screening_method": "clean-reference CCTRT calibrated threshold with persistence",
+  "calibration_training_seeds": [
+    50,
+    51
+  ],
+  "calibration_threshold_z": 3.5597909647931076,
+  "calibration_quantile": 0.975,
+  "persistence_rounds": 2,
+  "all_clients_aggregated": false,
+  "independent_test_set_used": false,
+  "cavc_used_in_online_score": false,
+  "causality": "Each round score is calculated before next round using current round and prior client observations only.",
+  "limitations": [
+    "One malicious client and one delayed-onset schedule per run.",
+    "Percentile scores are cohort-relative and are not calibrated attack probabilities.",
+    "CAVC is excluded because the existing CAVC V2 tool is a frozen-checkpoint local-candidate diagnostic, not a per-round online signal.",
+    "The same non-IID partition is retained; this is a delayed-onset test, not partition generalization.",
+    "Server-validation metrics are development diagnostics; the independent test set is untouched."
+  ],
+  "files": {
+    "client_round_scores": "phase9_client_round_scores.csv",
+    "round_metrics": "phase9_round_metrics.csv",
+    "online_detection_metrics": "phase9_online_detection_metrics.csv"
+  }
+}

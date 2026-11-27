@@ -1,0 +1,11 @@
+Round,Attack_Active,Target_Client,Target_CCTRT_Score,Target_Rank_Most_Suspicious_First,Target_Top1,Target_Top3,Honest_Mean_CCTRT_Score,Target_Calibrated_Anomaly_Z,Target_Calibrated_Alert,Target_Rejected,Honest_Excluded_Count,ROC_AUC,Average_Precision,Calibrated_ROC_AUC,Calibrated_Average_Precision
+1,False,7,0.75,1,True,True,0.5,,False,False,0,,,,
+2,False,7,0.8625,2,False,True,0.5152777777777777,,False,False,0,,,,
+3,False,7,0.8250000000000001,2,False,True,0.5194444444444444,,False,False,0,,,,
+4,True,7,0.9,1,True,True,0.5111111111111111,,False,False,0,1.0,1.0,,
+5,True,7,0.8250000000000001,2,False,True,0.5194444444444445,,False,False,0,0.888888888888889,0.5,,
+6,True,7,0.775,2,False,True,0.525,,False,False,0,0.8888888888888888,0.5,,
+7,True,7,0.8,2,False,True,0.5222222222222221,,False,False,0,0.8888888888888888,0.5,,
+8,True,7,0.7875000000000001,2,False,True,0.523611111111111,,False,False,0,0.8888888888888888,0.5,,
+9,True,7,0.7875000000000001,2,False,True,0.523611111111111,,False,False,0,0.888888888888889,0.5,,
+10,True,7,0.8,2,False,True,0.5222222222222223,,False,False,0,0.8888888888888888,0.5,,

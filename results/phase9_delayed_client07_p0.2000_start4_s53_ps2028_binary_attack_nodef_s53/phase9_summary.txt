@@ -1,0 +1,15 @@
+PHASE 9 — DELAYED-ONSET ONLINE/Causal CCTRT
+============================================
+Malicious client: 7
+Attack start: round 4
+Warm-up rounds: 3
+Poison fraction of eligible non-Benign records: 20.000000%
+Poisoned records per active round: 9354
+Active rounds: 4-10
+Mean active-round ROC-AUC: 0.9047619047619049
+Active-round top-3 rate: 1.0
+Pre-attack target top-3 rounds: 3 of 3
+
+No screening; all clients aggregated.
+Independent test set not used.
+ROC-AUC is reported only after attack onset. Before onset, all clients behave honestly.

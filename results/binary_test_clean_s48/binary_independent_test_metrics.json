@@ -1,0 +1,112 @@
+{
+  "evaluation": "binary_independent_test_checkpoint_evaluation",
+  "binary_label_mapping": {
+    "original_Label_id_0": "Benign (0)",
+    "original_Label_id_1_to_6": "Attack (1)"
+  },
+  "test_set_used_for_training_or_calibration": false,
+  "test_split_history_note": "The split was not used by the binary training or calibration runs. It was examined in earlier seven-class project analyses, so describe it as a held-out binary evaluation split, not as historically unseen.",
+  "checkpoint_path": "E:\\IoMT_FL_IDS_TRFA\\results\\binary_fedavg_s48_round10_seed48_2epochs_lr015_v1\\binary_round_10.pt",
+  "checkpoint_round": 10,
+  "training_seed": 48,
+  "device": "cpu",
+  "test_directory": "E:\\IoMT_FL_IDS_TRFA\\data\\processed\\normalized_v1\\test",
+  "test_files": {
+    "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv.parquet": 45064,
+    "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv.parquet": 57440,
+    "Friday-WorkingHours-Morning.pcap_ISCX.csv.parquet": 38076,
+    "Monday-WorkingHours.pcap_ISCX.csv.parquet": 105786,
+    "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv.parquet": 57832,
+    "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv.parquet": 34210,
+    "Tuesday-WorkingHours.pcap_ISCX.csv.parquet": 89029,
+    "Wednesday-workingHours.pcap_ISCX.csv.parquet": 138136
+  },
+  "test_records": 565573,
+  "number_of_features": 78,
+  "number_of_binary_classes": 2,
+  "binary_class_counts": {
+    "Benign": 454264,
+    "Attack": 111309
+  },
+  "accuracy": 0.9627298332841207,
+  "balanced_accuracy": 0.9392670151853135,
+  "macro_f1": 0.940843959107191,
+  "weighted_f1": 0.9626627143129959,
+  "per_binary_class_metrics": {
+    "Benign": {
+      "precision": 0.9756939640120443,
+      "recall": 0.9779599528027755,
+      "f1": 0.976825644278752,
+      "support": 454264
+    },
+    "Attack": {
+      "precision": 0.9091915032561176,
+      "recall": 0.9005740775678517,
+      "f1": 0.90486227393563,
+      "support": 111309
+    }
+  },
+  "benign_false_alarm_count": 10012,
+  "benign_false_alarm_rate": 0.02204004719722452,
+  "attack_to_benign_missed_count": 11067,
+  "attack_to_benign_missed_rate": 0.09942592243214834,
+  "true_negative": 444252,
+  "false_positive": 10012,
+  "false_negative": 11067,
+  "true_positive": 100242,
+  "confusion_matrix_rows_true_columns_predicted": [
+    [
+      444252,
+      10012
+    ],
+    [
+      11067,
+      100242
+    ]
+  ],
+  "per_original_attack_category": {
+    "1": {
+      "class_name": "Bot",
+      "support": 391,
+      "detected_as_attack": 95,
+      "missed_as_benign": 296,
+      "attack_recall": 0.24296675191815856
+    },
+    "2": {
+      "class_name": "DoS",
+      "support": 75949,
+      "detected_as_attack": 67806,
+      "missed_as_benign": 8143,
+      "attack_recall": 0.8927833151193564
+    },
+    "3": {
+      "class_name": "Infiltration",
+      "support": 7,
+      "detected_as_attack": 0,
+      "missed_as_benign": 7,
+      "attack_recall": 0.0
+    },
+    "4": {
+      "class_name": "PortScan",
+      "support": 31760,
+      "detected_as_attack": 31506,
+      "missed_as_benign": 254,
+      "attack_recall": 0.9920025188916877
+    },
+    "5": {
+      "class_name": "Web Attack",
+      "support": 436,
+      "detected_as_attack": 2,
+      "missed_as_benign": 434,
+      "attack_recall": 0.0045871559633027525
+    },
+    "6": {
+      "class_name": "Brute Force",
+      "support": 2766,
+      "detected_as_attack": 833,
+      "missed_as_benign": 1933,
+      "attack_recall": 0.30115690527838035
+    }
+  },
+  "interpretation_note": "Inference-only evaluation of the supplied binary checkpoint. Do not use these results to tune the model or defense threshold."
+}
