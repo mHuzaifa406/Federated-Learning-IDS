@@ -155,6 +155,13 @@ def run(args: argparse.Namespace) -> Path:
             expected_alpha=DIRICHLET_ALPHA,
             expected_rounds=ROUNDS,
             expected_clients=len(CLIENT_IDS),
+            expected_classification_task="binary_benign_vs_attack",
+            expected_model_config={"input_features": 78, "num_classes": 2},
+            expected_training_configuration={
+                "local_epochs": 2,
+                "learning_rate": 0.015,
+                "batch_size": 512,
+            },
         )
         if int(args.training_seed) in [int(seed) for seed in calibration["training_seeds"]]:
             raise ValueError(
