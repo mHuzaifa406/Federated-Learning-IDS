@@ -1,0 +1,459 @@
+{
+  "experiment": "binary_clean_fedavg",
+  "paper_alignment": "Binary IDS classification as explicitly stated in Yang et al. Section 4.1; all non-Benign CIC-IDS-2017 classes are collapsed into Attack.",
+  "not_exact_reproduction": "The paper does not fully disclose the model architecture and all preprocessing details. This run uses the project's 78-128-64-2 MLP, current partition, and validation split.",
+  "dataset": "CIC-IDS-2017",
+  "training_seed": 46,
+  "partition_root": "E:\\IoMT_FL_IDS_TRFA\\data\\processed\\federated_v2",
+  "number_of_clients": 10,
+  "rounds": 10,
+  "local_epochs": 2,
+  "learning_rate": 0.01,
+  "batch_size": 512,
+  "number_of_features": 78,
+  "number_of_classes": 2,
+  "label_mapping": {
+    "Benign": 0,
+    "Attack": 1
+  },
+  "global_training_class_counts": {
+    "Benign": 1726202,
+    "Attack": 422985
+  },
+  "validation_class_counts": {
+    "Benign": 90854,
+    "Attack": 22262
+  },
+  "validation_only_model_development": true,
+  "independent_test_set_used": false,
+  "round_results": [
+    {
+      "round": 1,
+      "validation_loss": 0.23819480769734322,
+      "validation_accuracy": 0.8877877577000601,
+      "validation_balanced_accuracy": 0.7176138745919575,
+      "validation_macro_f1": 0.7698911330244587,
+      "validation_weighted_f1": 0.8697684321679228,
+      "validation_validation_records": 113116,
+      "validation_per_class_metrics": {
+        "Benign": {
+          "precision": 0.8785806314117157,
+          "recall": 0.9982499394633148,
+          "f1": 0.9346001452986609,
+          "support": 90854,
+          "predicted_count": 103229
+        },
+        "Attack": {
+          "precision": 0.9839182765247294,
+          "recall": 0.43697780972060013,
+          "f1": 0.6051821207502566,
+          "support": 22262,
+          "predicted_count": 9887
+        }
+      },
+      "validation_benign_false_alarm_count": 159,
+      "validation_benign_false_alarm_rate": 0.0017500605366852313,
+      "validation_attack_to_benign_count": 12534,
+      "validation_attack_to_benign_rate": 0.5630221902793999,
+      "validation_confusion_matrix_rows_true_columns_predicted": [
+        [
+          90695,
+          159
+        ],
+        [
+          12534,
+          9728
+        ]
+      ]
+    },
+    {
+      "round": 2,
+      "validation_loss": 0.1594145559784867,
+      "validation_accuracy": 0.9416174546483256,
+      "validation_balanced_accuracy": 0.8829771295991662,
+      "validation_macro_f1": 0.9027625038330432,
+      "validation_weighted_f1": 0.9400350869937315,
+      "validation_validation_records": 113116,
+      "validation_per_class_metrics": {
+        "Benign": {
+          "precision": 0.9492566601966598,
+          "recall": 0.979681687102384,
+          "f1": 0.9642292276026433,
+          "support": 90854,
+          "predicted_count": 93766
+        },
+        "Attack": {
+          "precision": 0.9045994832041344,
+          "recall": 0.7862725720959483,
+          "f1": 0.8412957800634432,
+          "support": 22262,
+          "predicted_count": 19350
+        }
+      },
+      "validation_benign_false_alarm_count": 1846,
+      "validation_benign_false_alarm_rate": 0.020318312897615955,
+      "validation_attack_to_benign_count": 4758,
+      "validation_attack_to_benign_rate": 0.21372742790405175,
+      "validation_confusion_matrix_rows_true_columns_predicted": [
+        [
+          89008,
+          1846
+        ],
+        [
+          4758,
+          17504
+        ]
+      ]
+    },
+    {
+      "round": 3,
+      "validation_loss": 0.1335616757396829,
+      "validation_accuracy": 0.9522437144170586,
+      "validation_balanced_accuracy": 0.9118898857487081,
+      "validation_macro_f1": 0.9225003301632788,
+      "validation_weighted_f1": 0.9516138385361205,
+      "validation_validation_records": 113116,
+      "validation_per_class_metrics": {
+        "Benign": {
+          "precision": 0.9627130758734216,
+          "recall": 0.9784379333876329,
+          "f1": 0.9705118127429145,
+          "support": 90854,
+          "predicted_count": 92338
+        },
+        "Attack": {
+          "precision": 0.9057175859081721,
+          "recall": 0.8453418381097835,
+          "f1": 0.8744888475836431,
+          "support": 22262,
+          "predicted_count": 20778
+        }
+      },
+      "validation_benign_false_alarm_count": 1959,
+      "validation_benign_false_alarm_rate": 0.021562066612367096,
+      "validation_attack_to_benign_count": 3443,
+      "validation_attack_to_benign_rate": 0.1546581618902165,
+      "validation_confusion_matrix_rows_true_columns_predicted": [
+        [
+          88895,
+          1959
+        ],
+        [
+          3443,
+          18819
+        ]
+      ]
+    },
+    {
+      "round": 4,
+      "validation_loss": 0.12044711588312525,
+      "validation_accuracy": 0.9544626754835743,
+      "validation_balanced_accuracy": 0.9182564226500542,
+      "validation_macro_f1": 0.9265402854455815,
+      "validation_weighted_f1": 0.954003434866795,
+      "validation_validation_records": 113116,
+      "validation_per_class_metrics": {
+        "Benign": {
+          "precision": 0.9657721111727047,
+          "recall": 0.9779646465758249,
+          "f1": 0.9718301386344371,
+          "support": 90854,
+          "predicted_count": 92001
+        },
+        "Attack": {
+          "precision": 0.9051858868103244,
+          "recall": 0.8585481987242836,
+          "f1": 0.881250432256726,
+          "support": 22262,
+          "predicted_count": 21115
+        }
+      },
+      "validation_benign_false_alarm_count": 2002,
+      "validation_benign_false_alarm_rate": 0.02203535342417505,
+      "validation_attack_to_benign_count": 3149,
+      "validation_attack_to_benign_rate": 0.14145180127571647,
+      "validation_confusion_matrix_rows_true_columns_predicted": [
+        [
+          88852,
+          2002
+        ],
+        [
+          3149,
+          19113
+        ]
+      ]
+    },
+    {
+      "round": 5,
+      "validation_loss": 0.11239720078833922,
+      "validation_accuracy": 0.9566816365500902,
+      "validation_balanced_accuracy": 0.9246907853991699,
+      "validation_macro_f1": 0.9305402150708326,
+      "validation_weighted_f1": 0.9563795150406461,
+      "validation_validation_records": 113116,
+      "validation_per_class_metrics": {
+        "Benign": {
+          "precision": 0.9688945622763376,
+          "recall": 0.9774473330838488,
+          "f1": 0.973152156046244,
+          "support": 90854,
+          "predicted_count": 91656
+        },
+        "Attack": {
+          "precision": 0.9045200372786579,
+          "recall": 0.8719342377144911,
+          "f1": 0.8879282740954211,
+          "support": 22262,
+          "predicted_count": 21460
+        }
+      },
+      "validation_benign_false_alarm_count": 2049,
+      "validation_benign_false_alarm_rate": 0.02255266691615119,
+      "validation_attack_to_benign_count": 2851,
+      "validation_attack_to_benign_rate": 0.12806576228550895,
+      "validation_confusion_matrix_rows_true_columns_predicted": [
+        [
+          88805,
+          2049
+        ],
+        [
+          2851,
+          19411
+        ]
+      ]
+    },
+    {
+      "round": 6,
+      "validation_loss": 0.10707868481420924,
+      "validation_accuracy": 0.9576098871954454,
+      "validation_balanced_accuracy": 0.9271847157758699,
+      "validation_macro_f1": 0.9321712607143695,
+      "validation_weighted_f1": 0.9573598084543252,
+      "validation_validation_records": 113116,
+      "validation_per_class_metrics": {
+        "Benign": {
+          "precision": 0.970087944502103,
+          "recall": 0.9773592797235124,
+          "f1": 0.9737100373377781,
+          "support": 90854,
+          "predicted_count": 91535
+        },
+        "Attack": {
+          "precision": 0.9046846763356656,
+          "recall": 0.8770101518282275,
+          "f1": 0.890632484090961,
+          "support": 22262,
+          "predicted_count": 21581
+        }
+      },
+      "validation_benign_false_alarm_count": 2057,
+      "validation_benign_false_alarm_rate": 0.02264072027648755,
+      "validation_attack_to_benign_count": 2738,
+      "validation_attack_to_benign_rate": 0.12298984817177253,
+      "validation_confusion_matrix_rows_true_columns_predicted": [
+        [
+          88797,
+          2057
+        ],
+        [
+          2738,
+          19524
+        ]
+      ]
+    },
+    {
+      "round": 7,
+      "validation_loss": 0.10307418895815727,
+      "validation_accuracy": 0.9587945118285653,
+      "validation_balanced_accuracy": 0.9300078074876037,
+      "validation_macro_f1": 0.9341943799452953,
+      "validation_weighted_f1": 0.9585921221141082,
+      "validation_validation_records": 113116,
+      "validation_per_class_metrics": {
+        "Benign": {
+          "precision": 0.9713966944860702,
+          "recall": 0.977480353093975,
+          "f1": 0.9744290283469664,
+          "support": 90854,
+          "predicted_count": 91423
+        },
+        "Attack": {
+          "precision": 0.9056838611533674,
+          "recall": 0.8825352618812325,
+          "f1": 0.8939597315436242,
+          "support": 22262,
+          "predicted_count": 21693
+        }
+      },
+      "validation_benign_false_alarm_count": 2046,
+      "validation_benign_false_alarm_rate": 0.02251964690602505,
+      "validation_attack_to_benign_count": 2615,
+      "validation_attack_to_benign_rate": 0.11746473811876741,
+      "validation_confusion_matrix_rows_true_columns_predicted": [
+        [
+          88808,
+          2046
+        ],
+        [
+          2615,
+          19647
+        ]
+      ]
+    },
+    {
+      "round": 8,
+      "validation_loss": 0.10006414906021442,
+      "validation_accuracy": 0.959333781251105,
+      "validation_balanced_accuracy": 0.9313439421784886,
+      "validation_macro_f1": 0.9351194198910021,
+      "validation_weighted_f1": 0.9591543740819632,
+      "validation_validation_records": 113116,
+      "validation_per_class_metrics": {
+        "Benign": {
+          "precision": 0.9720246043385943,
+          "recall": 0.9775023664340591,
+          "f1": 0.9747557897047525,
+          "support": 90854,
+          "predicted_count": 91366
+        },
+        "Attack": {
+          "precision": 0.9060229885057471,
+          "recall": 0.885185517922918,
+          "f1": 0.8954830500772517,
+          "support": 22262,
+          "predicted_count": 21750
+        }
+      },
+      "validation_benign_false_alarm_count": 2044,
+      "validation_benign_false_alarm_rate": 0.02249763356594096,
+      "validation_attack_to_benign_count": 2556,
+      "validation_attack_to_benign_rate": 0.11481448207708202,
+      "validation_confusion_matrix_rows_true_columns_predicted": [
+        [
+          88810,
+          2044
+        ],
+        [
+          2556,
+          19706
+        ]
+      ]
+    },
+    {
+      "round": 9,
+      "validation_loss": 0.097512585788237,
+      "validation_accuracy": 0.9607924608366633,
+      "validation_balanced_accuracy": 0.9354228508401885,
+      "validation_macro_f1": 0.9376708121184021,
+      "validation_weighted_f1": 0.9606907718960779,
+      "validation_validation_records": 113116,
+      "validation_per_class_metrics": {
+        "Benign": {
+          "precision": 0.9740118696315149,
+          "recall": 0.977260219693134,
+          "f1": 0.975633340842037,
+          "support": 90854,
+          "predicted_count": 91157
+        },
+        "Attack": {
+          "precision": 0.9059155699257707,
+          "recall": 0.8935854819872429,
+          "f1": 0.8997082833947672,
+          "support": 22262,
+          "predicted_count": 21959
+        }
+      },
+      "validation_benign_false_alarm_count": 2066,
+      "validation_benign_false_alarm_rate": 0.02273978030686596,
+      "validation_attack_to_benign_count": 2369,
+      "validation_attack_to_benign_rate": 0.10641451801275717,
+      "validation_confusion_matrix_rows_true_columns_predicted": [
+        [
+          88788,
+          2066
+        ],
+        [
+          2369,
+          19893
+        ]
+      ]
+    },
+    {
+      "round": 10,
+      "validation_loss": 0.09547453473972428,
+      "validation_accuracy": 0.9611991230241522,
+      "validation_balanced_accuracy": 0.9362864368810824,
+      "validation_macro_f1": 0.9383447310253734,
+      "validation_weighted_f1": 0.9611071997120137,
+      "validation_validation_records": 113116,
+      "validation_per_class_metrics": {
+        "Benign": {
+          "precision": 0.9743994908428526,
+          "recall": 0.9773702863935545,
+          "f1": 0.9758826276890953,
+          "support": 90854,
+          "predicted_count": 91131
+        },
+        "Attack": {
+          "precision": 0.9064816920627701,
+          "recall": 0.8952025873686101,
+          "f1": 0.9008068343616517,
+          "support": 22262,
+          "predicted_count": 21985
+        }
+      },
+      "validation_benign_false_alarm_count": 2056,
+      "validation_benign_false_alarm_rate": 0.022629713606445508,
+      "validation_attack_to_benign_count": 2333,
+      "validation_attack_to_benign_rate": 0.10479741263138981,
+      "validation_confusion_matrix_rows_true_columns_predicted": [
+        [
+          88798,
+          2056
+        ],
+        [
+          2333,
+          19929
+        ]
+      ]
+    }
+  ],
+  "final_validation_metrics": {
+    "accuracy": 0.9611991230241522,
+    "balanced_accuracy": 0.9362864368810824,
+    "macro_f1": 0.9383447310253734,
+    "weighted_f1": 0.9611071997120137,
+    "validation_records": 113116,
+    "per_class_metrics": {
+      "Benign": {
+        "precision": 0.9743994908428526,
+        "recall": 0.9773702863935545,
+        "f1": 0.9758826276890953,
+        "support": 90854,
+        "predicted_count": 91131
+      },
+      "Attack": {
+        "precision": 0.9064816920627701,
+        "recall": 0.8952025873686101,
+        "f1": 0.9008068343616517,
+        "support": 22262,
+        "predicted_count": 21985
+      }
+    },
+    "benign_false_alarm_count": 2056,
+    "benign_false_alarm_rate": 0.022629713606445508,
+    "attack_to_benign_count": 2333,
+    "attack_to_benign_rate": 0.10479741263138981,
+    "confusion_matrix_rows_true_columns_predicted": [
+      [
+        88798,
+        2056
+      ],
+      [
+        2333,
+        19929
+      ]
+    ]
+  },
+  "final_checkpoint": "binary_round_10.pt"
+}
