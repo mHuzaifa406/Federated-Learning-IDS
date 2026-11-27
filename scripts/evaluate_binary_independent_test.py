@@ -1,11 +1,11 @@
-"""Evaluate a binary federated IDS checkpoint on the reserved CIC-IDS-2017 test split.
+"""Evaluate a binary federated IDS checkpoint on the CIC-IDS-2017 test split.
 
-Binary label mapping:
-    original Label_id == 0      -> Benign (0)
-    original Label_id in 1..6   -> Attack (1)
+Label mapping:
+    Original Label_id 0      -> Benign (0)
+    Original Label_id 1..6   -> Attack (1)
 
-This script performs inference only. It does not train, calibrate, select a
-threshold, or modify the checkpoint.
+Inference only: this script does not train, calibrate, tune thresholds, or
+modify the supplied checkpoint.
 """
 from __future__ import annotations
 
@@ -32,7 +32,6 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from models.ids_model import IntrusionDetectionMLP
 
-
 LABEL_COLUMNS = {"Label_id", "Label", "Label_7class"}
 BINARY_NAMES = {0: "Benign", 1: "Attack"}
 
@@ -55,18 +54,12 @@ def evaluate_checkpoint(
     normalization = load_json(normalization_metadata_path)
     feature_names = normalization.get("features")
     if not isinstance(feature_names, list) or len(feature_names) != 78:
-        raise ValueError(
-            "Normalization metadata must define the ordered list of 78 features."
-        )
+        raise ValueError("Normalization metadata must define the ordered 78-feature list.")
 
     class_mapping = normalization.get("classes")
     if not isinstance(class_mapping, dict) or len(class_mapping) != 7:
-        raise ValueError(
-            "Normalization metadata must define all seven original CIC-IDS-2017 classes."
-        )
-    original_class_names = {
-        int(label): str(name) for name, label in class_mapping.items()
-    }
+        raise ValueError("Normalization metadata must define all seven original classes.")
+    original_class_names = {int(label): str(name) for name, label in class_mapping.items()}
     if set(original_class_names) != set(range(7)):
         raise ValueError("Original class mapping must contain Label_id values 0 through 6.")
     if original_class_names[0].strip().lower() != "benign":
@@ -74,7 +67,6 @@ def evaluate_checkpoint(
 
     if not checkpoint_path.is_file():
         raise FileNotFoundError(f"Checkpoint not found: {checkpoint_path}")
-
     checkpoint = torch.load(checkpoint_path, map_location="cpu")
     if not isinstance(checkpoint, dict) or "model_state_dict" not in checkpoint:
         raise ValueError("Checkpoint does not contain model_state_dict.")
@@ -86,9 +78,7 @@ def evaluate_checkpoint(
             for name, label in checkpoint_mapping.items()
         }
         if normalized_mapping != {"benign": 0, "attack": 1}:
-            raise ValueError(
-                f"Checkpoint binary label mapping is unexpected: {checkpoint_mapping}"
-            )
+            raise ValueError(f"Unexpected checkpoint binary label mapping: {checkpoint_mapping}")
 
     model = IntrusionDetectionMLP(input_features=78, num_classes=2)
     model.load_state_dict(checkpoint["model_state_dict"], strict=True)
@@ -96,31 +86,29 @@ def evaluate_checkpoint(
     torch.set_num_threads(4)
 
     if not test_dir.is_dir():
-        raise FileNotFoundError(f"Independent test directory not found: {test_dir}")
+        raise FileNotFoundError(f"Test directory not found: {test_dir}")
     parquet_files = sorted(test_dir.glob("*.parquet"))
     if len(parquet_files) != int(expected_file_count):
         raise ValueError(
-            f"Expected {expected_file_count} test Parquet files, found {len(parquet_files)}."
+            f"Expected {expected_file_count} Parquet files, found {len(parquet_files)}."
         )
 
-    y_true_parts: list[np.ndarray] = []
-    y_pred_parts: list[np.ndarray] = []
+    original_y_parts: list[np.ndarray] = []
+    prediction_parts: list[np.ndarray] = []
+    file_records: dict[str, int] = {}
     total_records = 0
     original_class_support = np.zeros(7, dtype=np.int64)
-    file_records: dict[str, int] = {}
 
     for parquet_path in parquet_files:
         frame = pd.read_parquet(parquet_path)
         if "Label_id" not in frame.columns:
             raise ValueError(f"{parquet_path.name} has no Label_id column.")
 
-        observed_features = [
-            column for column in frame.columns if column not in LABEL_COLUMNS
-        ]
+        observed_features = [column for column in frame.columns if column not in LABEL_COLUMNS]
         if observed_features != feature_names:
             raise ValueError(
                 f"Feature names/order in {parquet_path.name} do not match "
-                "normalization_metadata.json. Evaluation stopped."
+                "normalization_metadata.json."
             )
 
         x = frame[feature_names].to_numpy(dtype=np.float32, copy=True)
@@ -132,112 +120,80 @@ def evaluate_checkpoint(
         if np.any((original_y < 0) | (original_y > 6)):
             raise ValueError(f"{parquet_path.name} contains labels outside 0..6.")
 
-        binary_y = (original_y != 0).astype(np.int64)
-        prediction_parts: list[np.ndarray] = []
+        predictions_for_file: list[np.ndarray] = []
         with torch.inference_mode():
             for start in range(0, len(original_y), int(batch_size)):
                 batch_x = torch.from_numpy(x[start:start + int(batch_size)])
                 logits = model(batch_x)
                 if logits.ndim != 2 or logits.shape[1] != 2:
                     raise ValueError(
-                        f"Binary checkpoint produced unexpected output shape: {tuple(logits.shape)}"
+                        f"Checkpoint produced unexpected output shape: {tuple(logits.shape)}"
                     )
-                prediction_parts.append(
+                predictions_for_file.append(
                     torch.argmax(logits, dim=1).cpu().numpy().astype(np.int64)
                 )
 
-        predictions = np.concatenate(prediction_parts)
-        y_true_parts.append(binary_y)
-        y_pred_parts.append(predictions)
+        predictions = np.concatenate(predictions_for_file)
+        original_y_parts.append(original_y)
+        prediction_parts.append(predictions)
         original_class_support += np.bincount(original_y, minlength=7)
         total_records += int(len(original_y))
         file_records[parquet_path.name] = int(len(original_y))
 
-        del frame, x, original_y, binary_y, predictions, prediction_parts
+        del frame, x, original_y, predictions, predictions_for_file
 
     if total_records != int(expected_records):
         raise ValueError(
             f"Expected {expected_records:,} test records, evaluated {total_records:,}."
         )
 
-    y_true = np.concatenate(y_true_parts)
-    y_pred = np.concatenate(y_pred_parts)
+    original_y = np.concatenate(original_y_parts)
+    y_true = (original_y != 0).astype(np.int64)
+    y_pred = np.concatenate(prediction_parts)
     labels = np.array([0, 1], dtype=np.int64)
 
     precision, recall, f1, support = precision_recall_fscore_support(
         y_true, y_pred, labels=labels, zero_division=0
     )
     matrix = confusion_matrix(y_true, y_pred, labels=labels)
-    tn, fp, fn, tp = (int(v) for v in matrix.ravel())
+    tn, fp, fn, tp = (int(value) for value in matrix.ravel())
 
-    expected_original_counts_raw = normalization.get("testing_class_counts", {})
-    expected_original_counts = {
+    expected_counts_raw = normalization.get("testing_class_counts", {})
+    expected_counts = {
         int(class_mapping[name]): int(count)
-        for name, count in expected_original_counts_raw.items()
+        for name, count in expected_counts_raw.items()
         if name in class_mapping
     }
-    observed_original_counts = {
-        int(class_id): int(original_class_support[class_id])
+    observed_counts = {
+        class_id: int(original_class_support[class_id])
         for class_id in range(7)
     }
-    if expected_original_counts and observed_original_counts != expected_original_counts:
+    if expected_counts and observed_counts != expected_counts:
         raise ValueError(
-            "Observed original test class counts do not match normalization metadata. "
-            f"Observed={observed_original_counts}; expected={expected_original_counts}."
+            "Original test class counts do not match normalization metadata. "
+            f"Observed={observed_counts}; expected={expected_counts}."
         )
 
-    per_original_class: dict[str, Any] = {}
+    per_original_attack_category: dict[str, Any] = {}
     for class_id in range(1, 7):
-        class_mask = (np.concatenate([
-            np.asarray([], dtype=np.int64)
-        ]) if False else None)
-        # Per-category attack misses are calculated from the same concatenated
-        # original labels retained below by a second lightweight read.
-        missed = 0
-        correct = 0
-        total = int(original_class_support[class_id])
-        # The per-category breakdown is filled in the second pass below.
-        per_original_class[str(class_id)] = {
+        mask = original_y == class_id
+        total = int(mask.sum())
+        detected = int(np.count_nonzero(y_pred[mask] == 1))
+        missed = total - detected
+        per_original_attack_category[str(class_id)] = {
             "class_name": original_class_names[class_id],
             "support": total,
-            "detected_as_attack": None,
-            "missed_as_benign": None,
-            "attack_recall": None,
+            "detected_as_attack": detected,
+            "missed_as_benign": missed,
+            "attack_recall": float(detected / total) if total else None,
         }
-
-    # Re-read the eight test files to produce per-original-attack-category
-    # misses without retaining all original labels in memory during inference.
-    for parquet_path in parquet_files:
-        frame = pd.read_parquet(parquet_path)
-        original_y = frame["Label_id"].to_numpy(dtype=np.int64, copy=True)
-        x = frame[feature_names].to_numpy(dtype=np.float32, copy=True)
-        predictions_for_file: list[np.ndarray] = []
-        with torch.inference_mode():
-            for start in range(0, len(original_y), int(batch_size)):
-                batch_x = torch.from_numpy(x[start:start + int(batch_size)])
-                predictions_for_file.append(
-                    torch.argmax(model(batch_x), dim=1).cpu().numpy().astype(np.int64)
-                )
-        file_predictions = np.concatenate(predictions_for_file)
-        for class_id in range(1, 7):
-            mask = original_y == class_id
-            if np.any(mask):
-                total = int(mask.sum())
-                detected = int(np.count_nonzero(file_predictions[mask] == 1))
-                missed = total - detected
-                per_original_class[str(class_id)]["detected_as_attack"] = detected
-                per_original_class[str(class_id)]["missed_as_benign"] = missed
-                per_original_class[str(class_id)]["attack_recall"] = (
-                    float(detected / total) if total else None
-                )
-        del frame, original_y, x, file_predictions, predictions_for_file
 
     binary_counts = {
         "Benign": int(original_class_support[0]),
         "Attack": int(original_class_support[1:].sum()),
     }
     if binary_counts["Benign"] != int(support[0]) or binary_counts["Attack"] != int(support[1]):
-        raise RuntimeError("Binary label totals do not match the observed test class counts.")
+        raise RuntimeError("Binary totals do not match the original class counts.")
 
     return {
         "evaluation": "binary_independent_test_checkpoint_evaluation",
@@ -247,9 +203,9 @@ def evaluate_checkpoint(
         },
         "test_set_used_for_training_or_calibration": False,
         "test_split_history_note": (
-            "This split was not used by the binary training or calibration runs. "
-            "It was examined in earlier seven-class project analyses, so it should "
-            "be described as a held-out binary evaluation split, not as historically unseen."
+            "The split was not used by the binary training or calibration runs. "
+            "It was examined in earlier seven-class project analyses, so describe it "
+            "as a held-out binary evaluation split, not as historically unseen."
         ),
         "checkpoint_path": str(checkpoint_path),
         "checkpoint_round": checkpoint.get("round"),
@@ -283,9 +239,9 @@ def evaluate_checkpoint(
         "false_negative": fn,
         "true_positive": tp,
         "confusion_matrix_rows_true_columns_predicted": matrix.astype(int).tolist(),
-        "per_original_attack_category": per_original_class,
+        "per_original_attack_category": per_original_attack_category,
         "interpretation_note": (
-            "This is an inference-only evaluation of the supplied binary checkpoint. "
+            "Inference-only evaluation of the supplied binary checkpoint. "
             "Do not use these results to tune the model or defense threshold."
         ),
     }
@@ -337,7 +293,10 @@ def main() -> int:
     )
 
     output_dir.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(json.dumps(summary, indent=2, allow_nan=False), encoding="utf-8")
+    output_path.write_text(
+        json.dumps(summary, indent=2, allow_nan=False),
+        encoding="utf-8",
+    )
     print(json.dumps(summary, indent=2))
     print(f"Saved binary independent-test metrics: {output_path}")
     return 0
