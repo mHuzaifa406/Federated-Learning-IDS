@@ -23,6 +23,11 @@ class CCTRTCalibrationTests(unittest.TestCase):
         metadata = {
             "phase": "Phase 9 matched all-honest control",
             "dataset": "CIC-IDS-2017",
+            "classification_task": "binary_benign_vs_attack",
+            "model_config": {"input_features": 78, "num_classes": 2},
+            "local_epochs": 2,
+            "learning_rate": 0.015,
+            "batch_size": 512,
             "training_seed": seed,
             "partition_seed": 43,
             "dirichlet_alpha": 0.5,
@@ -95,6 +100,18 @@ class CCTRTCalibrationTests(unittest.TestCase):
             metadata_path = b / "phase9_metadata.json"
             metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
             metadata["training_seed"] = 41
+            metadata_path.write_text(json.dumps(metadata), encoding="utf-8")
+            with self.assertRaises(ValueError):
+                build_calibration([a, b])
+
+    def test_rejects_mismatched_training_configuration(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            a = self._make_clean_run(root, 41)
+            b = self._make_clean_run(root, 42)
+            metadata_path = b / "phase9_metadata.json"
+            metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+            metadata["learning_rate"] = 0.01
             metadata_path.write_text(json.dumps(metadata), encoding="utf-8")
             with self.assertRaises(ValueError):
                 build_calibration([a, b])
